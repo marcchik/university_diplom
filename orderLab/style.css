@@ -1,0 +1,11 @@
+.app {
+    margin: 100px auto;
+    max-width: 400px;
+    text-align: center;
+}
+
+@media screen and (min-width: 900px) {
+    .app {
+        max-width: 100%;
+    }
+}
