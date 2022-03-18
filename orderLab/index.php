@@ -87,6 +87,10 @@
         echo "<script>alert('Такой пользователь уже существует'); location.href='/orderLab';</script>";
     } elseif ($_REQUEST['status'] == "error") {
         echo "<script>alert('Упс.. Произошла ошибка!'); location.href='/orderLab';</script>";
+    } elseif ($_REQUEST['status'] == "authorized") {
+        echo "<script>alert('Вы авторизованы!'); location.href='/orderLab';</script>";
+    } elseif ($_REQUEST['status'] == "failed") {
+        echo "<script>alert('Что-то введенно не так...!'); location.href='/orderLab';</script>";
     }
 ?>
 
