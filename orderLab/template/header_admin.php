@@ -47,6 +47,8 @@
 
     <link rel="stylesheet" href="../../orderLab/template/css/main.css" />
     <script src="../../orderLab/template/js/base/loader.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="http://csshake.surge.sh/csshake.min.css">
 </head>
 
 <body>
