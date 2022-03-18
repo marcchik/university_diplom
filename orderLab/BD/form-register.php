@@ -30,6 +30,9 @@ if ($count == 0) {
     //хеш id нового пользователя
     $id = getIdHash();
 
+    //роль - пользователь
+    $_REQUEST['role'] = 'user';
+
     //получаем данные пользователя
     $USER[$id] = $_REQUEST;
 
@@ -37,18 +40,11 @@ if ($count == 0) {
 
     file_put_contents('temporary.json',json_encode($result));
 
-    echo "<script>location.href='add-user.php';</script>";
+    echo "<script>location.href='add-user.php?id=".$id."';</script>";
 
 } else {
     echo "<script>location.href='/orderLab?status=duplicate';</script>";
 }
-
-
-
-
-
-
-
 
 // функция получения хеша
 function getIdHash() {

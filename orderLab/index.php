@@ -78,7 +78,7 @@
 <?
 
     if ($_REQUEST['status'] == "success") {
-        echo "<script>location.href='/orderLab/profile';</script>";
+        echo "<script>location.href='/orderLab/profile?id=".$_REQUEST['id']."';</script>";
     } elseif ($_REQUEST['status'] == "duplicate") {
         echo "<script>alert('Такой пользователь уже существует'); location.href='/orderLab';</script>";
     } elseif ($_REQUEST['status'] == "error") {

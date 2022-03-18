@@ -6,7 +6,8 @@
     "reservationAdults": "2",
     "reservationChildren": "3",
     "loginPassword1": "111",
-    "loginPassword2": "111"
+    "loginPassword2": "111",
+    "role": "admin"
   },
   "hLQpam": {
     "contactName": "Mark",
@@ -15,6 +16,7 @@
     "faculty": "FIT",
     "speciality": "POIBMS",
     "loginPassword1": "111",
-    "loginPassword2": "111"
+    "loginPassword2": "111",
+    "role": "user"
   }
 }
