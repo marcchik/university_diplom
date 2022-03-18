@@ -497,6 +497,9 @@
 </div>
 <!-- Search Modal End -->
 
+<!--Подключаем библиотеку-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
 <!-- Vendor Scripts Start -->
 <script src="../../orderLab/template/js/vendor/jquery-3.5.1.min.js"></script>
 <script src="../../orderLab/template/js/vendor/bootstrap.bundle.min.js"></script>

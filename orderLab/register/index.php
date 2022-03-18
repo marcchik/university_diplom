@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="card-footer border-0 pt-0 d-flex justify-content-end align-items-center">
                                     <div>
-                                        <a href="orderLab/register" class="btn btn-icon btn-icon-end btn-primary">
+                                        <a href="/orderLab" class="btn btn-icon btn-icon-end btn-primary">
                                             <span>Login</span>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-chevron-right"><path d="M7 4L12.6464 9.64645C12.8417 9.84171 12.8417 10.1583 12.6464 10.3536L7 16"></path></svg>
 
@@ -118,12 +118,9 @@
                 </div>
                 <!-- Content End -->
             </div>
-
-            <!--Подключаем библиотеку-->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
             <script>
                 function submitForm() {
-                    let url = 'form.php'; // здесь указываем адрес PHP файла
+                    let url = '../BD/form-register.php'; // здесь указываем адрес PHP файла
                     let formData = $('.tooltip-end-top').serialize();
                     console.log(formData);
 
@@ -136,7 +133,7 @@
                         data: formData
                     });
 
-                    //location="form.php?"+formData;
+                    location = url + "?"+formData;
                 }
             </script>
             <?
