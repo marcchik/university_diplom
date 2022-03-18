@@ -79,4 +79,15 @@
     </div>
 </main>
 
+<?
+
+    if ($_REQUEST['status'] == "success") {
+        echo "<script>alert('Регистрация прошла успешно'); location.href='/orderLab';</script>";
+    } elseif ($_REQUEST['status'] == "duplicate") {
+        echo "<script>alert('Такой пользователь уже существует'); location.href='/orderLab';</script>";
+    } elseif ($_REQUEST['status'] == "error") {
+        echo "<script>alert('Упс.. Произошла ошибка!'); location.href='/orderLab';</script>";
+    }
+?>
+
 <? require_once('template/footer.php'); ?>

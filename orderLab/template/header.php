@@ -55,7 +55,7 @@
         <div class="nav-content d-flex">
             <!-- Logo Start -->
             <div class="logo position-relative">
-                <a href="Dashboards.Default.html">
+                <a href="/orderLab">
                     <!-- Logo can be added directly -->
                     <!-- <img src="img/logo/logo-white.svg" alt="logo" /> -->
 
