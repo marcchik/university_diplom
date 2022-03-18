@@ -88,7 +88,7 @@ foreach ($arrayUsersBD as $key => $item) {
                             <a class="nav-link px-0 border-bottom border-separator-light" data-bs-toggle="tab"
                                href="#projectsTab" role="tab" aria-selected="false">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-trend-up me-2"><path d="M17.8636 5L11.2453 11.6183C10.4771 12.3865 9.23606 12.401 8.45017 11.6508L8.27708 11.4856C7.49119 10.7354 6.25016 10.7498 5.48192 11.5181L2 15"></path><path d="M14 5H18V9"></path></svg>
-                                <span class="align-middle">Score</span>
+                                <span class="align-middle">Users</span>
                             </a>
                             <a class="nav-link px-0 border-bottom border-separator-light" data-bs-toggle="tab"
                                href="#permissionsTab" role="tab" aria-selected="false">
@@ -502,110 +502,10 @@ foreach ($arrayUsersBD as $key => $item) {
 
                 <!-- Projects Tab Start -->
                 <div class="tab-pane fade" id="projectsTab" role="tabpanel">
-                    <h2 class="small-title">Score</h2>
+                    <h2 class="small-title">Users</h2>
 
                     <!-- Projects Content Start -->
-                    <div class="row row-cols-1 row-cols-sm-2 g-2">
-                        <div class="col">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h6 class="heading mb-3">
-                                        <a href="#" class="stretched-link">
-                                            <span class="clamp-line sh-5" data-line="2"
-                                                  style="overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical; display: -webkit-box; -webkit-line-clamp: 2;">Basic Introduction to Bread Making</span>
-                                        </a>
-                                    </h6>
 
-                                    <div>
-                                        <div class="mb-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
-                                                 viewBox="0 0 20 20" fill="none" stroke="currentColor"
-                                                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                                                 class="cs-icon cs-icon-diagram-2 text-muted me-2">
-                                                <path
-                                                    d="M12 4.28988C14.8915 5.15043 17 7.82898 17 11 17 11.3965 16.967 11.7852 16.9037 12.1637M3.07089 12C3.02417 11.6734 3 11.3395 3 11 3 7.82898 5.10851 5.15043 8 4.28988M4.90441 15.7995C6.18092 17.1543 7.99169 18 10 18 11.6695 18 13.2024 17.4156 14.4054 16.4402 14.5768 16.3012 14.7415 16.1543 14.899 16M8 4C8 2.89543 8.89543 2 10 2V2C11.1046 2 12 2.89543 12 4V4C12 5.10457 11.1046 6 10 6V6C8.89543 6 8 5.10457 8 4V4z"></path>
-                                                <path
-                                                    d="M14 14C14 12.8954 14.8954 12 16 12V12C17.1046 12 18 12.8954 18 14V14C18 15.1046 17.1046 16 16 16V16C14.8954 16 14 15.1046 14 14V14zM2 14C2 12.8954 2.89543 12 4 12V12C5.10457 12 6 12.8954 6 14V14C6 15.1046 5.10457 16 4 16V16C2.89543 16 2 15.1046 2 14V14z"></path>
-                                            </svg>
-                                            <span class="align-middle text-alternate">Contributors: 4</span>
-                                        </div>
-                                        <div class="mb-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
-                                                 viewBox="0 0 20 20" fill="none" stroke="currentColor"
-                                                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                                                 class="cs-icon cs-icon-trend-up text-muted me-2">
-                                                <path
-                                                    d="M17.8636 5L11.2453 11.6183C10.4771 12.3865 9.23606 12.401 8.45017 11.6508L8.27708 11.4856C7.49119 10.7354 6.25016 10.7498 5.48192 11.5181L2 15"></path>
-                                                <path d="M14 5H18V9"></path>
-                                            </svg>
-                                            <span class="align-middle text-alternate">Active</span>
-                                        </div>
-                                        <div>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
-                                                 viewBox="0 0 20 20" fill="none" stroke="currentColor"
-                                                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                                                 class="cs-icon cs-icon-check-square text-muted me-2">
-                                                <path
-                                                    d="M17 5L10.6329 12.2032C10.2511 12.6351 9.58418 12.6556 9.17656 12.248L6.92857 10"></path>
-                                                <path
-                                                    d="M11 2L5.5 2C4.09554 2 3.39331 2 2.88886 2.33706C2.67048 2.48298 2.48298 2.67048 2.33706 2.88886C2 3.39331 2 4.09554 2 5.5L2 14.5C2 15.9045 2 16.6067 2.33706 17.1111C2.48298 17.3295 2.67048 17.517 2.88886 17.6629C3.39331 18 4.09554 18 5.5 18L14.5 18C15.9045 18 16.6067 18 17.1111 17.6629C17.3295 17.517 17.517 17.3295 17.6629 17.1111C18 16.6067 18 15.9045 18 14.5L18 11"></path>
-                                            </svg>
-                                            <span class="align-middle text-alternate">Completed</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h6 class="heading mb-3">
-                                        <a href="#" class="stretched-link">
-                                            <span class="clamp-line sh-5" data-line="2"
-                                                  style="overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical; display: -webkit-box; -webkit-line-clamp: 2;">4 Facts About Old Baking Techniques</span>
-                                        </a>
-                                    </h6>
-
-                                    <div>
-                                        <div class="mb-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
-                                                 viewBox="0 0 20 20" fill="none" stroke="currentColor"
-                                                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                                                 class="cs-icon cs-icon-diagram-2 text-muted me-2">
-                                                <path
-                                                    d="M12 4.28988C14.8915 5.15043 17 7.82898 17 11 17 11.3965 16.967 11.7852 16.9037 12.1637M3.07089 12C3.02417 11.6734 3 11.3395 3 11 3 7.82898 5.10851 5.15043 8 4.28988M4.90441 15.7995C6.18092 17.1543 7.99169 18 10 18 11.6695 18 13.2024 17.4156 14.4054 16.4402 14.5768 16.3012 14.7415 16.1543 14.899 16M8 4C8 2.89543 8.89543 2 10 2V2C11.1046 2 12 2.89543 12 4V4C12 5.10457 11.1046 6 10 6V6C8.89543 6 8 5.10457 8 4V4z"></path>
-                                                <path
-                                                    d="M14 14C14 12.8954 14.8954 12 16 12V12C17.1046 12 18 12.8954 18 14V14C18 15.1046 17.1046 16 16 16V16C14.8954 16 14 15.1046 14 14V14zM2 14C2 12.8954 2.89543 12 4 12V12C5.10457 12 6 12.8954 6 14V14C6 15.1046 5.10457 16 4 16V16C2.89543 16 2 15.1046 2 14V14z"></path>
-                                            </svg>
-                                            <span class="align-middle text-alternate">Contributors: 3</span>
-                                        </div>
-                                        <div class="mb-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
-                                                 viewBox="0 0 20 20" fill="none" stroke="currentColor"
-                                                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                                                 class="cs-icon cs-icon-trend-up text-muted me-2">
-                                                <path
-                                                    d="M17.8636 5L11.2453 11.6183C10.4771 12.3865 9.23606 12.401 8.45017 11.6508L8.27708 11.4856C7.49119 10.7354 6.25016 10.7498 5.48192 11.5181L2 15"></path>
-                                                <path d="M14 5H18V9"></path>
-                                            </svg>
-                                            <span class="align-middle text-alternate">Active</span>
-                                        </div>
-                                        <div>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
-                                                 viewBox="0 0 20 20" fill="none" stroke="currentColor"
-                                                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                                                 class="cs-icon cs-icon-clock text-muted me-2">
-                                                <path
-                                                    d="M8 12L9.70711 10.2929C9.89464 10.1054 10 9.851 10 9.58579V6"></path>
-                                                <circle cx="10" cy="10" r="8"></circle>
-                                            </svg>
-                                            <span class="align-middle text-alternate">Pending</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!-- Projects Content End -->
                 </div>
                 <!-- Projects Tab End -->
@@ -613,116 +513,170 @@ foreach ($arrayUsersBD as $key => $item) {
                 <!-- Permissions Tab Start -->
                 <div class="tab-pane fade" id="permissionsTab" role="tabpanel">
                     <h2 class="small-title">Permissions</h2>
+                    <div class="mb-5">
+                        <div class="row g-2">
+                            <div class="col-12 col-sm-6 col-lg-2">
+                                <form class="card mb-5 tooltip-end-top" id="contactForm1" novalidate="novalidate">
+                                    <div class="card-body">
+                                        <p class="text-alternate mb-4">Monday</p>
+                                        <div class="mb-3 filled">
+                                            <input class="form-control" placeholder="First pair" name="1-1">
+                                        </div>
+                                        <div class="mb-3 filled">
+                                            <input class="form-control" placeholder="Second pair" name="1-2">
+                                        </div>
+                                        <div class="mb-3 filled">
+                                            <input class="form-control" placeholder="Third pair" name="1-3">
+                                        </div>
+                                        <div class="mb-3 filled">
+                                            <input class="form-control" placeholder="Fourth pair" name="1-4">
+                                        </div>
+                                    </div>
+                                    <div class="card-footer border-0 pt-0 d-flex justify-content-end align-items-center">
+                                        <div>
+                                            <button class="btn btn-icon btn-icon-end btn-primary" type="submit">
+                                                <span>Change</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-chevron-right"><path d="M7 4L12.6464 9.64645C12.8417 9.84171 12.8417 10.1583 12.6464 10.3536L7 16"></path></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-12 col-sm-6 col-lg-2">
+                                <form class="card mb-5 tooltip-end-top" id="contactForm2" novalidate="novalidate">
+                                    <div class="card-body">
+                                        <p class="text-alternate mb-4">Tuesday</p>
+                                        <div class="mb-3 filled">
+                                            <input class="form-control" placeholder="First pair" name="2-1">
+                                        </div>
+                                        <div class="mb-3 filled">
+                                            <input class="form-control" placeholder="Second pair" name="2-2">
+                                        </div>
+                                        <div class="mb-3 filled">
+                                            <input class="form-control" placeholder="Third pair" name="2-3">
+                                        </div>
+                                        <div class="mb-3 filled">
+                                            <input class="form-control" placeholder="Fourth pair" name="2-4">
+                                        </div>
+                                    </div>
+                                    <div class="card-footer border-0 pt-0 d-flex justify-content-end align-items-center">
+                                        <div>
+                                            <button class="btn btn-icon btn-icon-end btn-primary" type="submit">
+                                                <span>Change</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-chevron-right"><path d="M7 4L12.6464 9.64645C12.8417 9.84171 12.8417 10.1583 12.6464 10.3536L7 16"></path></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-12 col-sm-6 col-lg-2">
+                                <form class="card mb-5 tooltip-end-top" id="contactForm3" novalidate="novalidate">
+                                    <div class="card-body">
+                                        <p class="text-alternate mb-4">Wednesday</p>
+                                        <div class="mb-3 filled">
+                                            <input class="form-control" placeholder="First pair" name="3-1">
+                                        </div>
+                                        <div class="mb-3 filled">
+                                            <input class="form-control" placeholder="Second pair" name="3-2">
+                                        </div>
+                                        <div class="mb-3 filled">
+                                            <input class="form-control" placeholder="Third pair" name="3-3">
+                                        </div>
+                                        <div class="mb-3 filled">
+                                            <input class="form-control" placeholder="Fourth pair" name="3-4">
+                                        </div>
+                                    </div>
+                                    <div class="card-footer border-0 pt-0 d-flex justify-content-end align-items-center">
+                                        <div>
+                                            <button class="btn btn-icon btn-icon-end btn-primary" type="submit">
+                                                <span>Change</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-chevron-right"><path d="M7 4L12.6464 9.64645C12.8417 9.84171 12.8417 10.1583 12.6464 10.3536L7 16"></path></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-12 col-sm-6 col-lg-2">
+                                <form class="card mb-5 tooltip-end-top" id="contactForm4" novalidate="novalidate">
+                                    <div class="card-body">
+                                        <p class="text-alternate mb-4">Thursday</p>
+                                        <div class="mb-3 filled">
+                                            <input class="form-control" placeholder="First pair" name="4-1">
+                                        </div>
+                                        <div class="mb-3 filled">
+                                            <input class="form-control" placeholder="Second pair" name="4-2">
+                                        </div>
+                                        <div class="mb-3 filled">
+                                            <input class="form-control" placeholder="Third pair" name="4-3">
+                                        </div>
+                                        <div class="mb-3 filled">
+                                            <input class="form-control" placeholder="Fourth pair" name="4-4">
+                                        </div>
+                                    </div>
+                                    <div class="card-footer border-0 pt-0 d-flex justify-content-end align-items-center">
+                                        <div>
+                                            <button class="btn btn-icon btn-icon-end btn-primary" type="submit">
+                                                <span>Change</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-chevron-right"><path d="M7 4L12.6464 9.64645C12.8417 9.84171 12.8417 10.1583 12.6464 10.3536L7 16"></path></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-12 col-sm-6 col-lg-2">
+                                <form class="card mb-5 tooltip-end-top" id="contactForm5" novalidate="novalidate">
+                                    <div class="card-body">
+                                        <p class="text-alternate mb-4">Friday</p>
+                                        <div class="mb-3 filled">
+                                            <input class="form-control" placeholder="First pair" name="5-1">
+                                        </div>
+                                        <div class="mb-3 filled">
+                                            <input class="form-control" placeholder="Second pair" name="5-2">
+                                        </div>
+                                        <div class="mb-3 filled">
+                                            <input class="form-control" placeholder="Third pair" name="5-3">
+                                        </div>
+                                        <div class="mb-3 filled">
+                                            <input class="form-control" placeholder="Fourth pair" name="5-4">
+                                        </div>
+                                    </div>
+                                    <div class="card-footer border-0 pt-0 d-flex justify-content-end align-items-center">
+                                        <div>
+                                            <button class="btn btn-icon btn-icon-end btn-primary" type="submit">
+                                                <span>Change</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-chevron-right"><path d="M7 4L12.6464 9.64645C12.8417 9.84171 12.8417 10.1583 12.6464 10.3536L7 16"></path></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
 
-                    <div class="row row-cols-1 g-2">
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <label class="form-check custom-icon mb-0 checked-opacity-100">
-                                        <input type="checkbox" class="form-check-input" checked="">
-                          <span class="form-check-label">
-                            <span class="content opacity-50">
-                              <span class="heading mb-1 lh-1-25">Create</span>
-                              <span class="d-block text-small text-muted">
-                                Chocolate cake biscuit donut cotton candy soufflé cake macaroon. Halvah chocolate cotton candy sweet roll jelly-o candy danish
-                                dragée.
-                              </span>
-                            </span>
-                          </span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <label class="form-check custom-icon mb-0 checked-opacity-100">
-                                        <input type="checkbox" class="form-check-input" checked="">
-                          <span class="form-check-label">
-                            <span class="content opacity-50">
-                              <span class="heading mb-1 lh-1-25">Publish</span>
-                              <span class="d-block text-small text-muted">Jelly beans wafer candy caramels fruitcake macaroon sweet roll.</span>
-                            </span>
-                          </span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <label class="form-check custom-icon mb-0 checked-opacity-100">
-                                        <input type="checkbox" class="form-check-input" checked="">
-                          <span class="form-check-label">
-                            <span class="content opacity-50">
-                              <span class="heading mb-1 lh-1-25">Edit</span>
-                              <span class="d-block text-small text-muted">Jelly cake jelly sesame snaps jelly beans jelly beans.</span>
-                            </span>
-                          </span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <label class="form-check custom-icon mb-0 checked-opacity-100">
-                                        <input type="checkbox" class="form-check-input">
-                          <span class="form-check-label">
-                            <span class="content opacity-50">
-                              <span class="heading mb-1 lh-1-25">Delete</span>
-                              <span class="d-block text-small text-muted">Danish oat cake pudding.</span>
-                            </span>
-                          </span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <label class="form-check custom-icon mb-0 checked-opacity-100">
-                                        <input type="checkbox" class="form-check-input" checked="">
-                          <span class="form-check-label">
-                            <span class="content opacity-50">
-                              <span class="heading mb-1 lh-1-25">Add User</span>
-                              <span class="d-block text-small text-muted">Soufflé chocolate cake chupa chups danish brownie pudding fruitcake.</span>
-                            </span>
-                          </span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <label class="form-check custom-icon mb-0 checked-opacity-100">
-                                        <input type="checkbox" class="form-check-input">
-                          <span class="form-check-label">
-                            <span class="content opacity-50">
-                              <span class="heading mb-1 lh-1-25">Edit User</span>
-                              <span class="d-block text-small text-muted">Biscuit powder brownie powder sesame snaps jelly-o dragée cake.</span>
-                            </span>
-                          </span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <label class="form-check custom-icon mb-0 checked-opacity-100">
-                                        <input type="checkbox" class="form-check-input">
-                          <span class="form-check-label">
-                            <span class="content opacity-50">
-                              <span class="heading mb-1 lh-1-25">Delete User</span>
-                              <span class="d-block text-small text-muted">
-                                Liquorice jelly powder fruitcake oat cake. Gummies tiramisu cake jelly-o bonbon. Marshmallow liquorice croissant.
-                              </span>
-                            </span>
-                          </span>
-                                    </label>
-                                </div>
+                            <div class="col-12 col-sm-6 col-lg-2">
+                                <form class="card mb-5 tooltip-end-top" id="contactForm6" novalidate="novalidate">
+                                    <div class="card-body">
+                                        <p class="text-alternate mb-4">Saturday</p>
+                                        <div class="mb-3 filled">
+                                            <input class="form-control" placeholder="First pair" name="6-1">
+                                        </div>
+                                        <div class="mb-3 filled">
+                                            <input class="form-control" placeholder="Second pair" name="6-2">
+                                        </div>
+                                        <div class="mb-3 filled">
+                                            <input class="form-control" placeholder="Third pair" name="6-3">
+                                        </div>
+                                        <div class="mb-3 filled">
+                                            <input class="form-control" placeholder="Fourth pair" name="6-4">
+                                        </div>
+                                    </div>
+                                    <div class="card-footer border-0 pt-0 d-flex justify-content-end align-items-center">
+                                        <div>
+                                            <button class="btn btn-icon btn-icon-end btn-primary" type="submit">
+                                                <span>Change</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-chevron-right"><path d="M7 4L12.6464 9.64645C12.8417 9.84171 12.8417 10.1583 12.6464 10.3536L7 16"></path></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

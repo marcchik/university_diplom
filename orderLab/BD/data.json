@@ -2,9 +2,9 @@
   "3kNo4m": {
     "contactName": "admin",
     "contactEmail": "admin@gmail.com",
-    "reservationRoom": "1",
-    "reservationAdults": "2",
-    "reservationChildren": "3",
+    "university": "1",
+    "faculty": "2",
+    "speciality": "3",
     "loginPassword1": "111",
     "loginPassword2": "111",
     "role": "admin"
