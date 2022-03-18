@@ -1,83 +1,20 @@
 {
-  "z9GvzR": {
+  "3kNo4m": {
+    "contactName": "admin",
+    "contactEmail": "admin@gmail.com",
+    "reservationRoom": "1",
+    "reservationAdults": "2",
+    "reservationChildren": "3",
+    "loginPassword1": "111",
+    "loginPassword2": "111"
+  },
+  "hLQpam": {
     "contactName": "Mark",
-    "contactEmail": "sdsdds@gmail.com",
-    "reservationRoom": "",
-    "reservationAdults": "HTiT",
-    "reservationChildren": "",
-    "loginPassword1": "",
-    "loginPassword2": ""
-  },
-  "3NrdKN": {
-    "contactName": "",
     "contactEmail": "markstal2002@gmail.com",
-    "reservationRoom": "",
-    "reservationAdults": "",
-    "reservationChildren": "",
-    "loginPassword1": "",
-    "loginPassword2": ""
-  },
-  "bGrCxL": {
-    "contactName": "",
-    "contactEmail": "markstal2002@gmail.com",
-    "reservationRoom": "",
-    "reservationAdults": "",
-    "reservationChildren": "",
-    "loginPassword1": "",
-    "loginPassword2": ""
-  },
-  "GUUkeP": {
-    "contactName": "",
-    "contactEmail": "markstal2002@gmail.com",
-    "reservationRoom": "",
-    "reservationAdults": "",
-    "reservationChildren": "",
-    "loginPassword1": "",
-    "loginPassword2": ""
-  },
-  "aEg7cB": {
-    "contactName": "",
-    "contactEmail": "markstal2002@gmail.com",
-    "reservationRoom": "",
-    "reservationAdults": "",
-    "reservationChildren": "",
-    "loginPassword1": "",
-    "loginPassword2": ""
-  },
-  "xNeNMp": {
-    "contactName": "",
-    "contactEmail": "markstasdsdl2002@gmail.com",
-    "reservationRoom": "",
-    "reservationAdults": "",
-    "reservationChildren": "",
-    "loginPassword1": "",
-    "loginPassword2": ""
-  },
-  "XzeKMg": {
-    "contactName": "",
-    "contactEmail": "1",
-    "reservationRoom": "",
-    "reservationAdults": "",
-    "reservationChildren": "",
-    "loginPassword1": "",
-    "loginPassword2": ""
-  },
-  "BRJeuw": {
-    "contactName": "",
-    "contactEmail": "22",
-    "reservationRoom": "",
-    "reservationAdults": "",
-    "reservationChildren": "",
-    "loginPassword1": "",
-    "loginPassword2": ""
-  },
-  "dQKk52": {
-    "contactName": "",
-    "contactEmail": "www",
-    "reservationRoom": "",
-    "reservationAdults": "",
-    "reservationChildren": "",
-    "loginPassword1": "",
-    "loginPassword2": ""
+    "university": "BSTU",
+    "faculty": "FIT",
+    "speciality": "POIBMS",
+    "loginPassword1": "111",
+    "loginPassword2": "111"
   }
 }

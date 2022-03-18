@@ -76,106 +76,125 @@
             </div>
             <!-- Language Switch End -->
 
-            <!-- User Menu Start -->
-            <div class="user-container d-flex">
-                <a href="#" class="d-flex user position-relative" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="profile" alt="profile" src="../../orderLab/template/img/profile/profile-10.jpg" />
-                    <div class="name">Mark Stepaniuk</div>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end user-menu wide">
-                    <div class="row mb-3 ms-0 me-0">
-                        <div class="col-12 ps-1 mb-2">
-                            <div class="text-extra-small text-primary">ACCOUNT</div>
+            <? if(isset($_REQUEST['id'])) : ?>
+                <?
+                    // получаем данные из JSON файла
+                    $ourData = file_get_contents("../BD/data.json");
+
+                    // Преобразуем в массив
+                    $arrayUsersBD = json_decode($ourData, true);
+
+                    foreach ($arrayUsersBD as $key => $item) {
+
+                        if (strcasecmp($key, $_REQUEST['id']) == 0) {
+                            $userName = $item['contactName'];
+                            $userEmail = $item['contactEmail'];
+                            $userUniversity = $item['university'];
+                            $userFaculty = $item['faculty'];
+                            $userSpeciality = $item['speciality'];
+                        }
+                    }
+                ?>
+                <!-- User Menu Start -->
+                <div class="user-container d-flex">
+                    <a href="#" class="d-flex user position-relative" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="profile" alt="profile" src="../../orderLab/template/img/profile/profile-10.jpg" />
+                        <div class="name"><?=$userName?></div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end user-menu wide">
+                        <div class="row mb-3 ms-0 me-0">
+                            <div class="col-12 ps-1 mb-2">
+                                <div class="text-extra-small text-primary">ACCOUNT</div>
+                            </div>
+                            <div class="col-6 ps-1 pe-1">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="#">University:</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Faculty:</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Speciality:</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-6 pe-1 ps-1">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="#"><?=$userUniversity?></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><?=$userFaculty?></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><?=$userSpeciality?></a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="col-6 ps-1 pe-1">
-                            <ul class="list-unstyled">
-                                <li>
-                                    <a href="#">User Info</a>
-                                </li>
-                                <li>
-                                    <a href="#">Preferences</a>
-                                </li>
-                                <li>
-                                    <a href="#">Calendar</a>
-                                </li>
-                            </ul>
+                        <div class="row mb-1 ms-0 me-0">
+                            <div class="col-12 p-1 mb-2 pt-2">
+                                <div class="text-extra-small text-primary">CONTACT</div>
+                            </div>
+                            <div class="col-6 ps-1 pe-1">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="#">
+                                            <i data-cs-icon="email" class="me-2" data-cs-size="17"></i>
+                                            <span class="align-middle"><?=$userEmail?></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i data-cs-icon="phone" class="me-2" data-cs-size="17"></i>
+                                            <span class="align-middle">Phone</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="col-6 pe-1 ps-1">
-                            <ul class="list-unstyled">
-                                <li>
-                                    <a href="#">Security</a>
-                                </li>
-                                <li>
-                                    <a href="#">Billing</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row mb-1 ms-0 me-0">
-                        <div class="col-12 p-1 mb-2 pt-2">
-                            <div class="text-extra-small text-primary">APPLICATION</div>
-                        </div>
-                        <div class="col-6 ps-1 pe-1">
-                            <ul class="list-unstyled">
-                                <li>
-                                    <a href="#">Themes</a>
-                                </li>
-                                <li>
-                                    <a href="#">Language</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-6 pe-1 ps-1">
-                            <ul class="list-unstyled">
-                                <li>
-                                    <a href="#">Devices</a>
-                                </li>
-                                <li>
-                                    <a href="#">Storage</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row mb-1 ms-0 me-0">
-                        <div class="col-12 p-1 mb-3 pt-3">
-                            <div class="separator-light"></div>
-                        </div>
-                        <div class="col-6 ps-1 pe-1">
-                            <ul class="list-unstyled">
-                                <li>
-                                    <a href="#">
-                                        <i data-cs-icon="help" class="me-2" data-cs-size="17"></i>
-                                        <span class="align-middle">Help</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i data-cs-icon="file-text" class="me-2" data-cs-size="17"></i>
-                                        <span class="align-middle">Docs</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-6 pe-1 ps-1">
-                            <ul class="list-unstyled">
-                                <li>
-                                    <a href="#">
-                                        <i data-cs-icon="gear" class="me-2" data-cs-size="17"></i>
-                                        <span class="align-middle">Settings</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i data-cs-icon="logout" class="me-2" data-cs-size="17"></i>
-                                        <span class="align-middle">Logout</span>
-                                    </a>
-                                </li>
-                            </ul>
+                        <div class="row mb-1 ms-0 me-0">
+                            <div class="col-12 p-1 mb-3 pt-3">
+                                <div class="separator-light"></div>
+                            </div>
+                            <div class="col-6 ps-1 pe-1">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="#">
+                                            <i data-cs-icon="help" class="me-2" data-cs-size="17"></i>
+                                            <span class="align-middle">Help</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i data-cs-icon="file-text" class="me-2" data-cs-size="17"></i>
+                                            <span class="align-middle">Docs</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-6 pe-1 ps-1">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="#">
+                                            <i data-cs-icon="gear" class="me-2" data-cs-size="17"></i>
+                                            <span class="align-middle">Settings</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/orderLab">
+                                            <i data-cs-icon="logout" class="me-2" data-cs-size="17"></i>
+                                            <span class="align-middle">Logout</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- User Menu End -->
+                <!-- User Menu End -->
+            <? endif; ?>
 
             <!-- Icons Menu Start -->
             <ul class="list-unstyled list-inline text-center menu-icons">

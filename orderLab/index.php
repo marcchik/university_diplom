@@ -1,10 +1,6 @@
 <? require_once('template/header.php'); ?>
-<style>
-    body {
-        /*background: url(template/images/main.png) no-repeat center center fixed;*/
 
-    }
-</style>
+
 <main>
     <div class="container">
         <div class="row">
@@ -82,13 +78,13 @@
 <?
 
     if ($_REQUEST['status'] == "success") {
-        echo "<script>alert('Регистрация прошла успешно'); location.href='/orderLab';</script>";
+        echo "<script>location.href='/orderLab/profile';</script>";
     } elseif ($_REQUEST['status'] == "duplicate") {
         echo "<script>alert('Такой пользователь уже существует'); location.href='/orderLab';</script>";
     } elseif ($_REQUEST['status'] == "error") {
         echo "<script>alert('Упс.. Произошла ошибка!'); location.href='/orderLab';</script>";
     } elseif ($_REQUEST['status'] == "authorized") {
-        echo "<script>alert('Вы авторизованы!'); location.href='/orderLab';</script>";
+        echo "<script>location.href='/orderLab/profile?id=".$_REQUEST['id']."';</script>";
     } elseif ($_REQUEST['status'] == "failed") {
         echo "<script>alert('Что-то введенно не так...!'); location.href='/orderLab';</script>";
     }

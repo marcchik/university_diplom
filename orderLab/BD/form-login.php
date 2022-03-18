@@ -7,7 +7,7 @@ $USER = array();
 $arrayUsersBD = array();
 
 //логин пользователя
-$username = $_REQUEST['contactEmail'];
+$username = $_REQUEST['email'];
 
 //пароль пользователя
 $userpass = $_REQUEST['password'];
@@ -27,10 +27,12 @@ foreach ($arrayUsersBD as $hashId => $user) {
     if (strcasecmp($user['contactEmail'], $username) == 0) {
         $count++;
         if (strcasecmp($user['loginPassword1'], $userpass) == 0) {
-            echo "<script>location.href='/orderLab?status=authorized';</script>";
+            echo "<script>location.href='/orderLab?id=".$hashId."&status=authorized';</script>";
         }
     }
 }
+
+
 
 echo "<script>location.href='/orderLab?status=failed';</script>";
 

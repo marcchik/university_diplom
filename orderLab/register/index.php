@@ -39,7 +39,7 @@
                                     <div class="row g-3">
                                         <div class="col-md-4">
                                             <div class="mb-3 top-label">
-                                                <select class="form-control" data-width="100%" name="reservationRoom" id="reservationRoom">
+                                                <select class="form-control" data-width="100%" name="university" id="reservationRoom">
                                                     <option label="&nbsp;"></option>
                                                     <option value="BSTU">BSTU</option>
                                                     <option value="BNTU">BNTU</option>
@@ -50,7 +50,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3 top-label">
-                                                <select class="form-control" data-width="100%" name="reservationAdults" id="reservationAdults">
+                                                <select class="form-control" data-width="100%" name="faculty" id="reservationAdults">
                                                     <option label="&nbsp;"></option>
                                                     <option value="FIT">FIT</option>
                                                     <option value="HTiT">HTiT</option>
@@ -60,7 +60,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3 top-label">
-                                                <select class="form-control" data-width="100%" name="reservationChildren" id="reservationChildren">
+                                                <select class="form-control" data-width="100%" name="speciality" id="reservationChildren">
                                                     <option label="&nbsp;"></option>
                                                     <option value="POIT">POIT</option>
                                                     <option value="POIBMS">POIBMS</option>
