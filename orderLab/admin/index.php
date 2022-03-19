@@ -64,7 +64,7 @@
                                                 data: formData
                                             });
 
-                                            location = url + "?" + formData;
+                                            location = url + '?' + formData;
                                         }
                                     </script>
                                 </div>
@@ -81,7 +81,7 @@
 <?
 
 if ($_REQUEST['status'] == "success") {
-    echo "<script>location.href='/orderLab/profile?id=".$_REQUEST['id']."';</script>";
+    echo "<script>location.href='/orderLab/management';</script>";
 } elseif ($_REQUEST['status'] == "duplicate") {
     echo "<script>alert('Такой пользователь уже существует'); location.href='/orderLab';</script>";
 } elseif ($_REQUEST['status'] == "error") {

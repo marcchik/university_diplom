@@ -18,5 +18,25 @@
     "loginPassword1": "111",
     "loginPassword2": "111",
     "role": "user"
+  },
+  "4xE6xu": {
+    "contactName": "Mark",
+    "contactEmail": "",
+    "university": "",
+    "faculty": "",
+    "speciality": "",
+    "loginPassword1": "",
+    "loginPassword2": "",
+    "role": "user"
+  },
+  "CPAYx6": {
+    "contactName": "\u042d\u043b\u044f",
+    "contactEmail": "w@gmail.com",
+    "university": "BNTU",
+    "faculty": "HTiT",
+    "speciality": "ISiT",
+    "loginPassword1": "222",
+    "loginPassword2": "222",
+    "role": "user"
   }
 }
