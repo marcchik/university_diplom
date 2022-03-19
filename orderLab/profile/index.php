@@ -2,21 +2,54 @@
 
 <?
 
-// получаем данные из JSON файла
+// получаем данные о профиле пользователя из JSON файла
 $ourData = file_get_contents("../BD/data.json");
 
 // Преобразуем в массив
 $arrayUsersBD = json_decode($ourData, true);
 
+//id пользователя
+$ID = $_REQUEST['id'];
+
 foreach ($arrayUsersBD as $key => $item) {
 
-    if (strcasecmp($key, $_REQUEST['id']) == 0) {
+    if (strcasecmp($key, $ID) == 0) {
         $userName = $item['contactName'];
         $userEmail = $item['contactEmail'];
         $userUniversity = $item['university'];
         $userFaculty = $item['faculty'];
         $userSpeciality = $item['speciality'];
     }
+}
+
+// получаем данные о успеваемости из JSON файла
+$ourData = file_get_contents("../BD/userInfo.json");
+
+// Преобразуем в массив
+$arrayStatBD = json_decode($ourData, true);
+
+//сделано лаб
+$doneLab = 0;
+
+foreach($arrayStatBD[$ID] as $pairName => $item) {
+    $doneLab += $item;
+}
+
+
+// получаем данные о предметах из JSON файла
+$ourData = file_get_contents("../BD/subject.json");
+
+// Преобразуем в массив
+$arraySubjectBD = json_decode($ourData, true);
+
+//всего лаб
+$totalLab = 0;
+//всего лекций
+$totalLecture = 0;
+
+foreach($arraySubjectBD as $subjectItem) {
+    $totalLab += $subjectItem['lab'];
+    $totalLecture += $subjectItem['lecture'];
 }
 ?>
 
@@ -137,7 +170,7 @@ foreach ($arrayUsersBD as $key => $item) {
                                 <div class="card hover-border-primary">
                                     <div class="card-body">
                                         <div class="heading mb-0 d-flex justify-content-between lh-1-25 mb-3">
-                                            <span>Projects</span>
+                                            <span>Total lab</span>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                  viewBox="0 0 20 20" fill="none" stroke="currentColor"
                                                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
@@ -152,7 +185,7 @@ foreach ($arrayUsersBD as $key => $item) {
                                             </svg>
                                         </div>
                                         <div class="text-small text-muted mb-1">ACTIVE</div>
-                                        <div class="cta-1 text-primary">14</div>
+                                        <div class="cta-1 text-primary"><?=$totalLab?></div>
                                     </div>
                                 </div>
                             </div>
@@ -160,7 +193,7 @@ foreach ($arrayUsersBD as $key => $item) {
                                 <div class="card hover-border-primary">
                                     <div class="card-body">
                                         <div class="heading mb-0 d-flex justify-content-between lh-1-25 mb-3">
-                                            <span>Tasks</span>
+                                            <span>Done</span>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                  viewBox="0 0 20 20" fill="none" stroke="currentColor"
                                                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
@@ -172,7 +205,7 @@ foreach ($arrayUsersBD as $key => $item) {
                                             </svg>
                                         </div>
                                         <div class="text-small text-muted mb-1">PENDING</div>
-                                        <div class="cta-1 text-primary">153</div>
+                                        <div class="cta-1 text-primary"><?=$doneLab?></div>
                                     </div>
                                 </div>
                             </div>
@@ -180,7 +213,7 @@ foreach ($arrayUsersBD as $key => $item) {
                                 <div class="card hover-border-primary">
                                     <div class="card-body">
                                         <div class="heading mb-0 d-flex justify-content-between lh-1-25 mb-3">
-                                            <span>Notes</span>
+                                            <span>Need to do</span>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                  viewBox="0 0 20 20" fill="none" stroke="currentColor"
                                                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
@@ -190,7 +223,7 @@ foreach ($arrayUsersBD as $key => $item) {
                                             </svg>
                                         </div>
                                         <div class="text-small text-muted mb-1">RECENT</div>
-                                        <div class="cta-1 text-primary">24</div>
+                                        <div class="cta-1 text-primary"><?=$totalLab - $doneLab?></div>
                                     </div>
                                 </div>
                             </div>
@@ -198,7 +231,7 @@ foreach ($arrayUsersBD as $key => $item) {
                                 <div class="card hover-border-primary">
                                     <div class="card-body">
                                         <div class="heading mb-0 d-flex justify-content-between lh-1-25 mb-3">
-                                            <span>Views</span>
+                                            <span>Your progress</span>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                  viewBox="0 0 20 20" fill="none" stroke="currentColor"
                                                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
@@ -209,8 +242,8 @@ foreach ($arrayUsersBD as $key => $item) {
                                                 <path d="M9 7 7 10M13.2412 7 11.2412 10"></path>
                                             </svg>
                                         </div>
-                                        <div class="text-small text-muted mb-1">THIS MONTH</div>
-                                        <div class="cta-1 text-primary">524</div>
+                                        <div class="text-small text-muted mb-1">THIS TERM</div>
+                                        <div class="cta-1 text-primary"><?=round($doneLab/($totalLab * 0.01))?>% completed</div>
                                     </div>
                                 </div>
                             </div>
@@ -219,7 +252,7 @@ foreach ($arrayUsersBD as $key => $item) {
                     <!-- Stats End -->
 
                     <!-- Logs Start -->
-                    <h2 class="small-title">Logs</h2>
+                    <h2 class="small-title">Subject</h2>
 
                     <div class="card">
                         <div class="card-body mb-n2">
@@ -227,270 +260,88 @@ foreach ($arrayUsersBD as $key => $item) {
                                 <div class="col-auto">
                                     <div
                                         class="sw-3 d-inline-block d-flex justify-content-start align-items-center h-100">
-                                        <div class="sh-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                 viewBox="0 0 20 20" fill="none" stroke="currentColor"
-                                                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                                                 class="cs-icon cs-icon-circle text-primary align-top">
-                                                <circle cx="10" cy="10" r="7"></circle>
-                                            </svg>
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div
                                         class="card-body d-flex flex-column pt-0 pb-0 ps-3 pe-4 h-100 justify-content-center">
                                         <div class="d-flex flex-column">
-                                            <div class="text-alternate mt-n1 lh-1-25">New user registiration</div>
+                                            <div class="text-alternate mt-n1 lh-1-25">Name</div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-auto">
+                                <div class="col">
                                     <div class="d-inline-block d-flex justify-content-end align-items-center h-100">
-                                        <div class="text-muted ms-2 mt-n1 lh-1-25">18 Dec</div>
+                                        <div class="text-muted ms-2 mt-n1 lh-1-25">All lab</div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="d-inline-block d-flex justify-content-end align-items-center h-100">
+                                        <div class="text-muted ms-2 mt-n1 lh-1-25">All lecture</div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row g-0 mb-2">
-                                <div class="col-auto">
-                                    <div
-                                        class="sw-3 d-inline-block d-flex justify-content-start align-items-center h-100">
-                                        <div class="sh-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                 viewBox="0 0 20 20" fill="none" stroke="currentColor"
-                                                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                                                 class="cs-icon cs-icon-circle text-primary align-top">
-                                                <circle cx="10" cy="10" r="7"></circle>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div
-                                        class="card-body d-flex flex-column pt-0 pb-0 ps-3 pe-4 h-100 justify-content-center">
-                                        <div class="d-flex flex-column">
-                                            <div class="text-alternate mt-n1 lh-1-25">3 new product added</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="d-inline-block d-flex justify-content-end align-items-center h-100">
-                                        <div class="text-muted ms-2 mt-n1 lh-1-25">18 Dec</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row g-0 mb-2">
-                                <div class="col-auto">
-                                    <div
-                                        class="sw-3 d-inline-block d-flex justify-content-start align-items-center h-100">
-                                        <div class="sh-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                 viewBox="0 0 20 20" fill="none" stroke="currentColor"
-                                                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                                                 class="cs-icon cs-icon-square text-secondary align-top">
-                                                <path
-                                                    d="M13.5 3C14.9045 3 15.6067 3 16.1111 3.33706C16.3295 3.48298 16.517 3.67048 16.6629 3.88886C17 4.39331 17 5.09554 17 6.5L17 13.5C17 14.9045 17 15.6067 16.6629 16.1111C16.517 16.3295 16.3295 16.517 16.1111 16.6629C15.6067 17 14.9045 17 13.5 17L6.5 17C5.09554 17 4.39331 17 3.88886 16.6629C3.67048 16.517 3.48298 16.3295 3.33706 16.1111C3 15.6067 3 14.9045 3 13.5L3 6.5C3 5.09554 3 4.39331 3.33706 3.88886C3.48298 3.67048 3.67048 3.48298 3.88886 3.33706C4.39331 3 5.09554 3 6.5 3L13.5 3Z"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div
-                                        class="card-body d-flex flex-column pt-0 pb-0 ps-3 pe-4 h-100 justify-content-center">
-                                        <div class="d-flex flex-column">
-                                            <div class="text-alternate mt-n1 lh-1-25">
-                                                Product out of stock:
-                                                <a href="#" class="alternate-link underline-link">Breadstick</a>
+                            <hr>
+                            <? foreach($arraySubjectBD as $subjectItem) : ?>
+                                <div class="row g-0 mb-2">
+                                    <div class="col-auto">
+                                        <div
+                                            class="sw-3 d-inline-block d-flex justify-content-start align-items-center h-100">
+                                            <div class="sh-3">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                     viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                                                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                                                     class="cs-icon cs-icon-circle text-primary align-top">
+                                                    <circle cx="10" cy="10" r="7"></circle>
+                                                </svg>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="d-inline-block d-flex justify-content-end align-items-center h-100">
-                                        <div class="text-muted ms-2 mt-n1 lh-1-25">16 Dec</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row g-0 mb-2">
-                                <div class="col-auto">
-                                    <div
-                                        class="sw-3 d-inline-block d-flex justify-content-start align-items-center h-100">
-                                        <div class="sh-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                 viewBox="0 0 20 20" fill="none" stroke="currentColor"
-                                                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                                                 class="cs-icon cs-icon-square text-secondary align-top">
-                                                <path
-                                                    d="M13.5 3C14.9045 3 15.6067 3 16.1111 3.33706C16.3295 3.48298 16.517 3.67048 16.6629 3.88886C17 4.39331 17 5.09554 17 6.5L17 13.5C17 14.9045 17 15.6067 16.6629 16.1111C16.517 16.3295 16.3295 16.517 16.1111 16.6629C15.6067 17 14.9045 17 13.5 17L6.5 17C5.09554 17 4.39331 17 3.88886 16.6629C3.67048 16.517 3.48298 16.3295 3.33706 16.1111C3 15.6067 3 14.9045 3 13.5L3 6.5C3 5.09554 3 4.39331 3.33706 3.88886C3.48298 3.67048 3.67048 3.48298 3.88886 3.33706C4.39331 3 5.09554 3 6.5 3L13.5 3Z"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div
-                                        class="card-body d-flex flex-column pt-0 pb-0 ps-3 pe-4 h-100 justify-content-center">
-                                        <div class="d-flex flex-column">
-                                            <div class="text-alternate mt-n1 lh-1-25">Category page returned an error
+                                    <div class="col">
+                                        <div
+                                            class="card-body d-flex flex-column pt-0 pb-0 ps-3 pe-4 h-100 justify-content-center">
+                                            <div class="d-flex flex-column">
+                                                <div class="text-alternate mt-n1 lh-1-25"><?=$subjectItem['name']?></div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="d-inline-block d-flex justify-content-end align-items-center h-100">
-                                        <div class="text-muted ms-2 mt-n1 lh-1-25">15 Dec</div>
+                                    <div class="col">
+                                        <div class="d-inline-block d-flex justify-content-end align-items-center h-100">
+                                            <div class="text-muted ms-2 mt-n1 lh-1-25"><?=$subjectItem['lab']?></div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="d-inline-block d-flex justify-content-end align-items-center h-100">
+                                            <div class="text-muted ms-2 mt-n1 lh-1-25"><?=$subjectItem['lecture']?></div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            <? endforeach;?>
+                            <hr>
                             <div class="row g-0 mb-2">
                                 <div class="col-auto">
                                     <div
                                         class="sw-3 d-inline-block d-flex justify-content-start align-items-center h-100">
-                                        <div class="sh-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                 viewBox="0 0 20 20" fill="none" stroke="currentColor"
-                                                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                                                 class="cs-icon cs-icon-circle text-primary align-top">
-                                                <circle cx="10" cy="10" r="7"></circle>
-                                            </svg>
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div
                                         class="card-body d-flex flex-column pt-0 pb-0 ps-3 pe-4 h-100 justify-content-center">
                                         <div class="d-flex flex-column">
-                                            <div class="text-alternate mt-n1 lh-1-25">14 products added</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="d-inline-block d-flex justify-content-end align-items-center h-100">
-                                        <div class="text-muted ms-2 mt-n1 lh-1-25">15 Dec</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row g-0 mb-2">
-                                <div class="col-auto">
-                                    <div
-                                        class="sw-3 d-inline-block d-flex justify-content-start align-items-center h-100">
-                                        <div class="sh-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                 viewBox="0 0 20 20" fill="none" stroke="currentColor"
-                                                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                                                 class="cs-icon cs-icon-hexagon text-tertiary align-top">
-                                                <path
-                                                    d="M9 2.57735C9.6188 2.22008 10.3812 2.22008 11 2.57735L15.9282 5.42265C16.547 5.77992 16.9282 6.44017 16.9282 7.1547V12.8453C16.9282 13.5598 16.547 14.2201 15.9282 14.5774L11 17.4226C10.3812 17.7799 9.6188 17.7799 9 17.4226L4.0718 14.5774C3.45299 14.2201 3.0718 13.5598 3.0718 12.8453V7.1547C3.0718 6.44017 3.45299 5.77992 4.0718 5.42265L9 2.57735Z"></path>
-                                            </svg>
+                                            <div class="text-alternate mt-n1 lh-1-25">All</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div
-                                        class="card-body d-flex flex-column pt-0 pb-0 ps-3 pe-4 h-100 justify-content-center">
-                                        <div class="d-flex flex-column">
-                                            <div class="text-alternate mt-n1 lh-1-25">
-                                                New sale:
-                                                <a href="#" class="alternate-link underline-link">Steirer Brot</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
                                     <div class="d-inline-block d-flex justify-content-end align-items-center h-100">
-                                        <div class="text-muted ms-2 mt-n1 lh-1-25">15 Dec</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row g-0 mb-2">
-                                <div class="col-auto">
-                                    <div
-                                        class="sw-3 d-inline-block d-flex justify-content-start align-items-center h-100">
-                                        <div class="sh-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                 viewBox="0 0 20 20" fill="none" stroke="currentColor"
-                                                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                                                 class="cs-icon cs-icon-hexagon text-tertiary align-top">
-                                                <path
-                                                    d="M9 2.57735C9.6188 2.22008 10.3812 2.22008 11 2.57735L15.9282 5.42265C16.547 5.77992 16.9282 6.44017 16.9282 7.1547V12.8453C16.9282 13.5598 16.547 14.2201 15.9282 14.5774L11 17.4226C10.3812 17.7799 9.6188 17.7799 9 17.4226L4.0718 14.5774C3.45299 14.2201 3.0718 13.5598 3.0718 12.8453V7.1547C3.0718 6.44017 3.45299 5.77992 4.0718 5.42265L9 2.57735Z"></path>
-                                            </svg>
-                                        </div>
+                                        <div class="text-muted ms-2 mt-n1 lh-1-25"><?=$totalLab?></div>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div
-                                        class="card-body d-flex flex-column pt-0 pb-0 ps-3 pe-4 h-100 justify-content-center">
-                                        <div class="d-flex flex-column">
-                                            <div class="text-alternate mt-n1 lh-1-25">
-                                                New sale:
-                                                <a href="#" class="alternate-link underline-link">Soda Bread</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
                                     <div class="d-inline-block d-flex justify-content-end align-items-center h-100">
-                                        <div class="text-muted ms-2 mt-n1 lh-1-25">15 Dec</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row g-0 mb-2">
-                                <div class="col-auto">
-                                    <div
-                                        class="sw-3 d-inline-block d-flex justify-content-start align-items-center h-100">
-                                        <div class="sh-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                 viewBox="0 0 20 20" fill="none" stroke="currentColor"
-                                                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                                                 class="cs-icon cs-icon-triangle text-warning align-top">
-                                                <path
-                                                    d="M8.49441 3.95707C9.14861 2.68098 10.8514 2.68098 11.5056 3.95706L16.7832 14.2516C17.4163 15.4864 16.5871 17 15.2776 17H4.72238C3.41289 17 2.58375 15.4864 3.21679 14.2516L8.49441 3.95707Z"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div
-                                        class="card-body d-flex flex-column pt-0 pb-0 ps-3 pe-4 h-100 justify-content-center">
-                                        <div class="d-flex flex-column">
-                                            <div class="text-alternate mt-n1 lh-1-25">Recived a support ticket</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="d-inline-block d-flex justify-content-end align-items-center h-100">
-                                        <div class="text-muted ms-2 mt-n1 lh-1-25">14 Dec</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row g-0">
-                                <div class="col-auto">
-                                    <div
-                                        class="sw-3 d-inline-block d-flex justify-content-start align-items-center h-100">
-                                        <div class="sh-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                 viewBox="0 0 20 20" fill="none" stroke="currentColor"
-                                                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                                                 class="cs-icon cs-icon-hexagon text-tertiary align-top">
-                                                <path
-                                                    d="M9 2.57735C9.6188 2.22008 10.3812 2.22008 11 2.57735L15.9282 5.42265C16.547 5.77992 16.9282 6.44017 16.9282 7.1547V12.8453C16.9282 13.5598 16.547 14.2201 15.9282 14.5774L11 17.4226C10.3812 17.7799 9.6188 17.7799 9 17.4226L4.0718 14.5774C3.45299 14.2201 3.0718 13.5598 3.0718 12.8453V7.1547C3.0718 6.44017 3.45299 5.77992 4.0718 5.42265L9 2.57735Z"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div
-                                        class="card-body d-flex flex-column pt-0 pb-0 ps-3 pe-4 h-100 justify-content-center">
-                                        <div class="d-flex flex-column">
-                                            <div class="text-alternate mt-n1 lh-1-25">
-                                                New sale:
-                                                <a href="#" class="alternate-link underline-link">Cholermüs</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="d-inline-block d-flex justify-content-end align-items-center h-100">
-                                        <div class="text-muted ms-2 mt-n1 lh-1-25">13 Dec</div>
+                                        <div class="text-muted ms-2 mt-n1 lh-1-25"><?=$totalLecture?></div>
                                     </div>
                                 </div>
                             </div>
@@ -506,105 +357,60 @@ foreach ($arrayUsersBD as $key => $item) {
 
                     <!-- Projects Content Start -->
                     <div class="row row-cols-1 row-cols-sm-2 g-2">
-                        <div class="col">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h6 class="heading mb-3">
-                                        <a href="#" class="stretched-link">
+                        <? foreach($arrayStatBD[$ID] as $pairName => $item) :?>
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h6 class="heading mb-3">
+                                            <a href="#" class="stretched-link">
                                             <span class="clamp-line sh-5" data-line="2"
-                                                  style="overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical; display: -webkit-box; -webkit-line-clamp: 2;">Basic Introduction to Bread Making</span>
-                                        </a>
-                                    </h6>
+                                                  style="overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical; display: -webkit-box; -webkit-line-clamp: 2;">
+                                               <?=$pairName?>
+                                            </span>
+                                            </a>
+                                        </h6>
 
-                                    <div>
-                                        <div class="mb-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
-                                                 viewBox="0 0 20 20" fill="none" stroke="currentColor"
-                                                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                                                 class="cs-icon cs-icon-diagram-2 text-muted me-2">
-                                                <path
-                                                    d="M12 4.28988C14.8915 5.15043 17 7.82898 17 11 17 11.3965 16.967 11.7852 16.9037 12.1637M3.07089 12C3.02417 11.6734 3 11.3395 3 11 3 7.82898 5.10851 5.15043 8 4.28988M4.90441 15.7995C6.18092 17.1543 7.99169 18 10 18 11.6695 18 13.2024 17.4156 14.4054 16.4402 14.5768 16.3012 14.7415 16.1543 14.899 16M8 4C8 2.89543 8.89543 2 10 2V2C11.1046 2 12 2.89543 12 4V4C12 5.10457 11.1046 6 10 6V6C8.89543 6 8 5.10457 8 4V4z"></path>
-                                                <path
-                                                    d="M14 14C14 12.8954 14.8954 12 16 12V12C17.1046 12 18 12.8954 18 14V14C18 15.1046 17.1046 16 16 16V16C14.8954 16 14 15.1046 14 14V14zM2 14C2 12.8954 2.89543 12 4 12V12C5.10457 12 6 12.8954 6 14V14C6 15.1046 5.10457 16 4 16V16C2.89543 16 2 15.1046 2 14V14z"></path>
-                                            </svg>
-                                            <span class="align-middle text-alternate">Contributors: 4</span>
-                                        </div>
-                                        <div class="mb-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
-                                                 viewBox="0 0 20 20" fill="none" stroke="currentColor"
-                                                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                                                 class="cs-icon cs-icon-trend-up text-muted me-2">
-                                                <path
-                                                    d="M17.8636 5L11.2453 11.6183C10.4771 12.3865 9.23606 12.401 8.45017 11.6508L8.27708 11.4856C7.49119 10.7354 6.25016 10.7498 5.48192 11.5181L2 15"></path>
-                                                <path d="M14 5H18V9"></path>
-                                            </svg>
-                                            <span class="align-middle text-alternate">Active</span>
-                                        </div>
                                         <div>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
-                                                 viewBox="0 0 20 20" fill="none" stroke="currentColor"
-                                                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                                                 class="cs-icon cs-icon-check-square text-muted me-2">
-                                                <path
-                                                    d="M17 5L10.6329 12.2032C10.2511 12.6351 9.58418 12.6556 9.17656 12.248L6.92857 10"></path>
-                                                <path
-                                                    d="M11 2L5.5 2C4.09554 2 3.39331 2 2.88886 2.33706C2.67048 2.48298 2.48298 2.67048 2.33706 2.88886C2 3.39331 2 4.09554 2 5.5L2 14.5C2 15.9045 2 16.6067 2.33706 17.1111C2.48298 17.3295 2.67048 17.517 2.88886 17.6629C3.39331 18 4.09554 18 5.5 18L14.5 18C15.9045 18 16.6067 18 17.1111 17.6629C17.3295 17.517 17.517 17.3295 17.6629 17.1111C18 16.6067 18 15.9045 18 14.5L18 11"></path>
-                                            </svg>
-                                            <span class="align-middle text-alternate">Completed</span>
+                                            <div class="mb-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                                     viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                                                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                                                     class="cs-icon cs-icon-diagram-2 text-muted me-2">
+                                                    <path
+                                                        d="M12 4.28988C14.8915 5.15043 17 7.82898 17 11 17 11.3965 16.967 11.7852 16.9037 12.1637M3.07089 12C3.02417 11.6734 3 11.3395 3 11 3 7.82898 5.10851 5.15043 8 4.28988M4.90441 15.7995C6.18092 17.1543 7.99169 18 10 18 11.6695 18 13.2024 17.4156 14.4054 16.4402 14.5768 16.3012 14.7415 16.1543 14.899 16M8 4C8 2.89543 8.89543 2 10 2V2C11.1046 2 12 2.89543 12 4V4C12 5.10457 11.1046 6 10 6V6C8.89543 6 8 5.10457 8 4V4z"></path>
+                                                    <path
+                                                        d="M14 14C14 12.8954 14.8954 12 16 12V12C17.1046 12 18 12.8954 18 14V14C18 15.1046 17.1046 16 16 16V16C14.8954 16 14 15.1046 14 14V14zM2 14C2 12.8954 2.89543 12 4 12V12C5.10457 12 6 12.8954 6 14V14C6 15.1046 5.10457 16 4 16V16C2.89543 16 2 15.1046 2 14V14z"></path>
+                                                </svg>
+                                                <span class="align-middle text-alternate">All: 16</span>
+                                            </div>
+                                            <div class="mb-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                                     viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                                                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                                                     class="cs-icon cs-icon-trend-up text-muted me-2">
+                                                    <path
+                                                        d="M17.8636 5L11.2453 11.6183C10.4771 12.3865 9.23606 12.401 8.45017 11.6508L8.27708 11.4856C7.49119 10.7354 6.25016 10.7498 5.48192 11.5181L2 15"></path>
+                                                    <path d="M14 5H18V9"></path>
+                                                </svg>
+                                                <span class="align-middle text-alternate">Not done: <?=(17 - $item)?></span>
+                                            </div>
+                                            <div>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                                     viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                                                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                                                     class="cs-icon cs-icon-check-square text-muted me-2">
+                                                    <path
+                                                        d="M17 5L10.6329 12.2032C10.2511 12.6351 9.58418 12.6556 9.17656 12.248L6.92857 10"></path>
+                                                    <path
+                                                        d="M11 2L5.5 2C4.09554 2 3.39331 2 2.88886 2.33706C2.67048 2.48298 2.48298 2.67048 2.33706 2.88886C2 3.39331 2 4.09554 2 5.5L2 14.5C2 15.9045 2 16.6067 2.33706 17.1111C2.48298 17.3295 2.67048 17.517 2.88886 17.6629C3.39331 18 4.09554 18 5.5 18L14.5 18C15.9045 18 16.6067 18 17.1111 17.6629C17.3295 17.517 17.517 17.3295 17.6629 17.1111C18 16.6067 18 15.9045 18 14.5L18 11"></path>
+                                                </svg>
+                                                <span class="align-middle text-alternate">Completed: <?=$item?></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h6 class="heading mb-3">
-                                        <a href="#" class="stretched-link">
-                                            <span class="clamp-line sh-5" data-line="2"
-                                                  style="overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical; display: -webkit-box; -webkit-line-clamp: 2;">4 Facts About Old Baking Techniques</span>
-                                        </a>
-                                    </h6>
-
-                                    <div>
-                                        <div class="mb-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
-                                                 viewBox="0 0 20 20" fill="none" stroke="currentColor"
-                                                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                                                 class="cs-icon cs-icon-diagram-2 text-muted me-2">
-                                                <path
-                                                    d="M12 4.28988C14.8915 5.15043 17 7.82898 17 11 17 11.3965 16.967 11.7852 16.9037 12.1637M3.07089 12C3.02417 11.6734 3 11.3395 3 11 3 7.82898 5.10851 5.15043 8 4.28988M4.90441 15.7995C6.18092 17.1543 7.99169 18 10 18 11.6695 18 13.2024 17.4156 14.4054 16.4402 14.5768 16.3012 14.7415 16.1543 14.899 16M8 4C8 2.89543 8.89543 2 10 2V2C11.1046 2 12 2.89543 12 4V4C12 5.10457 11.1046 6 10 6V6C8.89543 6 8 5.10457 8 4V4z"></path>
-                                                <path
-                                                    d="M14 14C14 12.8954 14.8954 12 16 12V12C17.1046 12 18 12.8954 18 14V14C18 15.1046 17.1046 16 16 16V16C14.8954 16 14 15.1046 14 14V14zM2 14C2 12.8954 2.89543 12 4 12V12C5.10457 12 6 12.8954 6 14V14C6 15.1046 5.10457 16 4 16V16C2.89543 16 2 15.1046 2 14V14z"></path>
-                                            </svg>
-                                            <span class="align-middle text-alternate">Contributors: 3</span>
-                                        </div>
-                                        <div class="mb-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
-                                                 viewBox="0 0 20 20" fill="none" stroke="currentColor"
-                                                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                                                 class="cs-icon cs-icon-trend-up text-muted me-2">
-                                                <path
-                                                    d="M17.8636 5L11.2453 11.6183C10.4771 12.3865 9.23606 12.401 8.45017 11.6508L8.27708 11.4856C7.49119 10.7354 6.25016 10.7498 5.48192 11.5181L2 15"></path>
-                                                <path d="M14 5H18V9"></path>
-                                            </svg>
-                                            <span class="align-middle text-alternate">Active</span>
-                                        </div>
-                                        <div>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
-                                                 viewBox="0 0 20 20" fill="none" stroke="currentColor"
-                                                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                                                 class="cs-icon cs-icon-clock text-muted me-2">
-                                                <path
-                                                    d="M8 12L9.70711 10.2929C9.89464 10.1054 10 9.851 10 9.58579V6"></path>
-                                                <circle cx="10" cy="10" r="8"></circle>
-                                            </svg>
-                                            <span class="align-middle text-alternate">Pending</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <? endforeach; ?>
                     </div>
                     <!-- Projects Content End -->
                 </div>
