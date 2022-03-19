@@ -11,7 +11,7 @@
                     <div class="min-h-100  d-flex justify-content-center align-items-center py-5">
                         <div class="sw-lg-50 px-5">
                             <div class="sh-11">
-                                <a href="/">
+                                <a href="/orderLab">
                                     <div class="logo-default"></div>
                                 </a>
                             </div>

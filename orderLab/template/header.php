@@ -69,9 +69,8 @@
             <div class="language-switch-container">
                 <button class="btn btn-empty language-button dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">EN</button>
                 <div class="dropdown-menu">
-                    <a href="#" class="dropdown-item">DE</a>
                     <a href="#" class="dropdown-item active">EN</a>
-                    <a href="#" class="dropdown-item">ES</a>
+                    <a href="#" class="dropdown-item">RU</a>
                 </div>
             </div>
             <!-- Language Switch End -->

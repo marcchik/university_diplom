@@ -37,9 +37,9 @@ $arrayScheduleDay = json_decode($ourData, true);
                     <h1 class="mb-0 pb-0 display-4" id="title"><?=$userName." ".$userSurname?></h1>
                     <nav class="breadcrumb-container d-inline-block" aria-label="breadcrumb">
                         <ul class="breadcrumb pt-0">
-                            <li class="breadcrumb-item"><a href="Dashboards.Default.html">Home</a></li>
-                            <li class="breadcrumb-item"><a href="Pages.html">Pages</a></li>
-                            <li class="breadcrumb-item"><a href="Pages.Profile.html">Profile</a></li>
+                            <li class="breadcrumb-item"><a href="/orderLab">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                            <li class="breadcrumb-item"><a href="#">Profile</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -120,185 +120,122 @@ $arrayScheduleDay = json_decode($ourData, true);
                     <h2 class="small-title">Users</h2>
 
                     <!-- Projects Content Start -->
-                    <div class="-out">
-                        <div class="by-count os-host os-theme-dark os-host-overflow os-host-overflow-y os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-transition" data-count="7" style="height: 392px; margin-bottom: -8px;"><div class="os-resize-observer-host observed"><div class="os-resize-observer" style="left: 0px; right: auto;"></div></div><div class="os-size-auto-observer observed" style="height: calc(100% + 1px); float: left;"><div class="os-resize-observer"></div></div><div class="os-content-glue" style="margin: 0px -15px;"></div><div class="os-padding"><div class="os-viewport os-viewport-native-scrollbars-invisible os-viewport-native-scrollbars-overlaid" style="overflow-y: scroll;"><div class="os-content" style="padding: 0px 15px; height: 100%; width: 100%;">
-                                        <div class="card mb-2 sh-15 sh-md-6">
-                                            <div class="card-body pt-0 pb-0 h-100">
-                                                <div class="row g-0 h-100 align-content-center">
-                                                    <div class="col-12 col-md-5 d-flex align-items-center mb-2 mb-md-0">
-                                                        <a href="#" class="body-link text-truncate">Barmbrack</a>
+                    <div class="col-12 mb-5">
+                        <section class="-section" id="checkboxes">
+                            <div class="card mb-2 bg-transparent no-shadow d-none d-md-block sh-3">
+                                <div class="card-body pt-0 pb-0 h-100">
+                                    <div class="row g-0 h-100 align-content-center">
+                                        <div
+                                            class="col-12 col-md-2 d-flex align-items-center mb-2 mb-md-0 text-muted text-small">
+                                            NAME and SURNAME
+                                        </div>
+                                        <div
+                                            class="col-6 col-md-2 d-flex align-items-center text-alternate text-medium justify-content-end text-muted text-small">
+                                            UNIVERSITY
+                                        </div>
+                                        <div
+                                            class="col-6 col-md-2 d-flex align-items-center justify-content-end text-alternate text-medium justify-content-end text-muted text-small">
+                                            FACULTY
+                                        </div>
+                                        <div
+                                            class="col-6 col-md-2 d-flex align-items-center text-alternate text-medium justify-content-end text-muted text-small">
+                                            SPECIALITY
+                                        </div>
+                                        <div
+                                            class="col-6 col-md-2 d-flex align-items-center text-alternate text-medium justify-content-end text-muted text-small">
+                                            EMAIL
+                                        </div>
+                                        <div
+                                            class="col-6 col-md-2 d-flex align-items-center text-alternate text-medium justify-content-end text-muted text-small">
+                                            ROLE
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="-out">
+                                <div
+                                    class="os-host os-theme-dark os-host-overflow os-host-overflow-y os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-transition"
+                                    data-count="4" id="checkboxTable" style="height: 288px; margin-bottom: -8px;">
+                                    <div class="os-resize-observer-host observed">
+                                        <div class="os-resize-observer" style="left: 0px; right: auto;"></div>
+                                    </div>
+                                    <div class="os-size-auto-observer observed"
+                                         style="height: calc(100% + 1px); float: left;">
+                                        <div class="os-resize-observer"></div>
+                                    </div>
+                                    <div class="os-content-glue" style="margin: 0px -15px;"></div>
+                                    <div class="os-padding">
+                                        <div
+                                            class="os-viewport os-viewport-native-scrollbars-invisible os-viewport-native-scrollbars-overlaid"
+                                            style="overflow-y: scroll;">
+                                            <div class="os-content"
+                                                 style="padding: 0px 15px; height: 100%; width: 100%;">
+                                                <? foreach($arrayUsersBD as $key => $item) :?>
+                                                    <div class="card mb-2 sh-19 sh-md-8">
+                                                        <div class="card-body pt-0 pb-0 h-100">
+                                                            <div class="row g-0 h-100 align-content-center">
+                                                                <div
+                                                                    class="col-11 col-md-2 d-flex flex-column justify-content-center mb-1 mb-md-0 order-1 order-md-1">
+                                                                    <div class="text-muted text-small d-md-none">Title</div>
+                                                                    <a href="#" class="text-truncate"><?=$item['contactName']?></a>
+                                                                </div>
+                                                                <div
+                                                                    class="col-6 col-md-2 d-flex flex-column justify-content-center align-items-md-end mb-1 mb-md-0 order-3 order-md-2">
+                                                                    <div class="text-muted text-small d-md-none">Category
+                                                                    </div>
+                                                                    <div class="text-alternate"><?=$item['contactEmail']?></div>
+                                                                </div>
+                                                                <div
+                                                                    class="col-6 col-md-2 d-flex flex-column justify-content-center align-items-md-end mb-1 mb-md-0 order-4 order-md-3">
+                                                                    <div class="text-muted text-small d-md-none">Price</div>
+                                                                    <div class="text-alternate">
+                                                            <span>
+                                                                <?=$item['university']?>
+                                                            </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div
+                                                                    class="col-6 col-md-2 d-flex flex-column justify-content-center align-items-md-end mb-1 mb-md-0 order-5 order-md-4">
+                                                                    <div class="text-muted text-small d-md-none">Sale</div>
+                                                                    <div class="text-alternate"><?=$item['faculty']?></div>
+                                                                </div>
+                                                                <div
+                                                                    class="col-6 col-md-2 d-flex flex-column justify-content-center align-items-md-end mb-1 mb-md-0 order-last order-md-5">
+                                                                    <div class="text-muted text-small d-md-none">Stock</div>
+                                                                    <div class="text-alternate"><?=$item['speciality']?></div>
+                                                                </div>
+                                                                <div
+                                                                    class="col-6 col-md-2 d-flex flex-column justify-content-center align-items-md-end mb-1 mb-md-0 order-last order-md-5">
+                                                                    <div class="text-muted text-small d-md-none">Stock</div>
+                                                                    <div class="text-alternate"><?=$item['role']?></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-12 col-md-2 d-flex align-items-center text-muted text-medium mb-1 mb-md-0">
-                                                        <span class="badge bg-outline-secondary me-1">STOCK</span>
-                                                    </div>
-                                                    <div class="col-12 col-md-3 d-flex align-items-center text-medium text-danger justify-content-md-center mb-1 mb-md-0">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-arrow-bottom me-1"><path d="M17 11 10.3536 17.6464C10.1583 17.8417 9.84171 17.8417 9.64645 17.6464L3 11M10 2 10 17"></path></svg>
-                                                        <span class="text-medium">-18.4%</span>
-                                                    </div>
-                                                    <div class="col-12 col-md-2 d-flex align-items-center justify-content-md-end text-muted text-medium mb-1 mb-md-0">
-                                  <span>
-                                    <span class="text-small">$</span>
-                                    3.25
-                                  </span>
-                                                    </div>
-                                                </div>
+                                                <? endforeach;?>
+
+
                                             </div>
                                         </div>
-                                        <div class="card mb-2 sh-15 sh-md-6">
-                                            <div class="card-body pt-0 pb-0 h-100">
-                                                <div class="row g-0 h-100 align-content-center">
-                                                    <div class="col-12 col-md-5 d-flex align-items-center mb-2 mb-md-0">
-                                                        <a href="#" class="body-link text-truncate">Cheesymite Scroll</a>
-                                                    </div>
-                                                    <div class="col-12 col-md-2 d-flex align-items-center text-muted text-medium mb-1 mb-md-0">
-                                                        <span class="badge bg-outline-secondary me-1">TREND</span>
-                                                    </div>
-                                                    <div class="col-12 col-md-3 d-flex align-items-center text-medium text-danger justify-content-md-center mb-1 mb-md-0">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-arrow-bottom me-1"><path d="M17 11 10.3536 17.6464C10.1583 17.8417 9.84171 17.8417 9.64645 17.6464L3 11M10 2 10 17"></path></svg>
-                                                        <span class="text-medium">-13.4%</span>
-                                                    </div>
-                                                    <div class="col-12 col-md-2 d-flex align-items-center justify-content-md-end text-muted text-medium mb-1 mb-md-0">
-                                  <span>
-                                    <span class="text-small">$</span>
-                                    4.50
-                                  </span>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    </div>
+                                    <div
+                                        class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable os-scrollbar-auto-hidden">
+                                        <div class="os-scrollbar-track os-scrollbar-track-off">
+                                            <div class="os-scrollbar-handle"
+                                                 style="width: 100%; transform: translate(0px, 0px);"></div>
                                         </div>
-                                        <div class="card mb-2 sh-15 sh-md-6">
-                                            <div class="card-body pt-0 pb-0 h-100">
-                                                <div class="row g-0 h-100 align-content-center">
-                                                    <div class="col-12 col-md-5 d-flex align-items-center mb-2 mb-md-0">
-                                                        <a href="#" class="body-link text-truncate">Cholermüs</a>
-                                                    </div>
-                                                    <div class="col-12 col-md-2 d-flex align-items-center text-muted text-medium mb-1 mb-md-0">
-                                                        <span class="badge bg-outline-secondary me-1">SALE</span>
-                                                    </div>
-                                                    <div class="col-12 col-md-3 d-flex align-items-center text-medium text-success justify-content-md-center mb-1 mb-md-0">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-arrow-top me-1"><path d="M3 9 9.64645 2.35355C9.84171 2.15829 10.1583 2.15829 10.3536 2.35355L17 9M10 18 10 3"></path></svg>
-                                                        <span class="text-medium">+9.7%</span>
-                                                    </div>
-                                                    <div class="col-12 col-md-2 d-flex align-items-center justify-content-md-end text-muted text-medium mb-1 mb-md-0">
-                                  <span>
-                                    <span class="text-small">$</span>
-                                    1.75
-                                  </span>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    </div>
+                                    <div class="os-scrollbar os-scrollbar-vertical os-scrollbar-auto-hidden"
+                                         style="height: calc(100% - 8px);">
+                                        <div class="os-scrollbar-track os-scrollbar-track-off">
+                                            <div class="os-scrollbar-handle"
+                                                 style="height: 81.8182%; transform: translate(0px, 44px);"></div>
                                         </div>
-                                        <div class="card mb-2 sh-15 sh-md-6">
-                                            <div class="card-body pt-0 pb-0 h-100">
-                                                <div class="row g-0 h-100 align-content-center">
-                                                    <div class="col-12 col-md-5 d-flex align-items-center mb-2 mb-md-0">
-                                                        <a href="#" class="body-link text-truncate">Ruisreikäleipä</a>
-                                                    </div>
-                                                    <div class="col-12 col-md-2 d-flex align-items-center text-muted text-medium mb-1 mb-md-0">
-                                                        <span class="badge bg-outline-secondary me-1">SALE</span>
-                                                    </div>
-                                                    <div class="col-12 col-md-3 d-flex align-items-center text-medium text-success justify-content-md-center mb-1 mb-md-0">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-arrow-top me-1"><path d="M3 9 9.64645 2.35355C9.84171 2.15829 10.1583 2.15829 10.3536 2.35355L17 9M10 18 10 3"></path></svg>
-                                                        <span class="text-medium">+5.3%</span>
-                                                    </div>
-                                                    <div class="col-12 col-md-2 d-flex align-items-center justify-content-md-end text-muted text-medium mb-1 mb-md-0">
-                                  <span>
-                                    <span class="text-small">$</span>
-                                    3.00
-                                  </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card mb-2 sh-15 sh-md-6">
-                                            <div class="card-body pt-0 pb-0 h-100">
-                                                <div class="row g-0 h-100 align-content-center">
-                                                    <div class="col-12 col-md-5 d-flex align-items-center mb-2 mb-md-0">
-                                                        <a href="#" class="body-link text-truncate">Bagel</a>
-                                                    </div>
-                                                    <div class="col-12 col-md-2 d-flex align-items-center text-muted text-medium mb-1 mb-md-0">
-                                                        <span class="badge bg-outline-secondary me-1">STOCK</span>
-                                                    </div>
-                                                    <div class="col-12 col-md-3 d-flex align-items-center text-medium text-danger justify-content-md-center mb-1 mb-md-0">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-arrow-bottom me-1"><path d="M17 11 10.3536 17.6464C10.1583 17.8417 9.84171 17.8417 9.64645 17.6464L3 11M10 2 10 17"></path></svg>
-                                                        <span class="text-medium">-2.3%</span>
-                                                    </div>
-                                                    <div class="col-12 col-md-2 d-flex align-items-center justify-content-md-end text-muted text-medium mb-1 mb-md-0">
-                                  <span>
-                                    <span class="text-small">$</span>
-                                    4.25
-                                  </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card mb-2 sh-15 sh-md-6">
-                                            <div class="card-body pt-0 pb-0 h-100">
-                                                <div class="row g-0 h-100 align-content-center">
-                                                    <div class="col-12 col-md-5 d-flex align-items-center mb-2 mb-md-0">
-                                                        <a href="#" class="body-link text-truncate">Buccellato di Lucca</a>
-                                                    </div>
-                                                    <div class="col-12 col-md-2 d-flex align-items-center text-muted text-medium mb-1 mb-md-0">
-                                                        <span class="badge bg-outline-secondary me-1">TREND</span>
-                                                    </div>
-                                                    <div class="col-12 col-md-3 d-flex align-items-center text-medium text-danger justify-content-md-center mb-1 mb-md-0">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-arrow-bottom me-1"><path d="M17 11 10.3536 17.6464C10.1583 17.8417 9.84171 17.8417 9.64645 17.6464L3 11M10 2 10 17"></path></svg>
-                                                        <span class="text-medium">-5.3%</span>
-                                                    </div>
-                                                    <div class="col-12 col-md-2 d-flex align-items-center justify-content-md-end text-muted text-medium mb-1 mb-md-0">
-                                  <span>
-                                    <span class="text-small">$</span>
-                                    3.75
-                                  </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card mb-2 sh-15 sh-md-6">
-                                            <div class="card-body pt-0 pb-0 h-100">
-                                                <div class="row g-0 h-100 align-content-center">
-                                                    <div class="col-12 col-md-5 d-flex align-items-center mb-2 mb-md-0">
-                                                        <a href="#" class="body-link text-truncate">Chapati</a>
-                                                    </div>
-                                                    <div class="col-12 col-md-2 d-flex align-items-center text-muted text-medium mb-1 mb-md-0">
-                                                        <span class="badge bg-outline-secondary me-1">SALE</span>
-                                                    </div>
-                                                    <div class="col-12 col-md-3 d-flex align-items-center text-medium text-success justify-content-md-center mb-1 mb-md-0">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-arrow-top me-1"><path d="M3 9 9.64645 2.35355C9.84171 2.15829 10.1583 2.15829 10.3536 2.35355L17 9M10 18 10 3"></path></svg>
-                                                        <span class="text-medium">+7.1%</span>
-                                                    </div>
-                                                    <div class="col-12 col-md-2 d-flex align-items-center justify-content-md-end text-muted text-medium mb-1 mb-md-0">
-                                  <span>
-                                    <span class="text-small">$</span>
-                                    1.85
-                                  </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card mb-2 sh-15 sh-md-6">
-                                            <div class="card-body pt-0 pb-0 h-100">
-                                                <div class="row g-0 h-100 align-content-center">
-                                                    <div class="col-12 col-md-5 d-flex align-items-center mb-2 mb-md-0">
-                                                        <a href="#" class="body-link text-truncate">Pullman Loaf</a>
-                                                    </div>
-                                                    <div class="col-12 col-md-2 d-flex align-items-center text-muted text-medium mb-1 mb-md-0">
-                                                        <span class="badge bg-outline-secondary me-1">TREND</span>
-                                                    </div>
-                                                    <div class="col-12 col-md-3 d-flex align-items-center text-medium text-success justify-content-md-center mb-1 mb-md-0">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-arrow-top me-1"><path d="M3 9 9.64645 2.35355C9.84171 2.15829 10.1583 2.15829 10.3536 2.35355L17 9M10 18 10 3"></path></svg>
-                                                        <span class="text-medium">+2.3%</span>
-                                                    </div>
-                                                    <div class="col-12 col-md-2 d-flex align-items-center justify-content-md-end text-muted text-medium mb-1 mb-md-0">
-                                  <span>
-                                    <span class="text-small">$</span>
-                                    2.25
-                                  </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div></div></div><div class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable os-scrollbar-auto-hidden"><div class="os-scrollbar-track os-scrollbar-track-off"><div class="os-scrollbar-handle" style="width: 100%; transform: translate(0px, 0px);"></div></div></div><div class="os-scrollbar os-scrollbar-vertical os-scrollbar-auto-hidden" style="height: calc(100% - 8px);"><div class="os-scrollbar-track os-scrollbar-track-off"><div class="os-scrollbar-handle" style="height: 89.0909%; transform: translate(0px, 0px);"></div></div></div><div class="os-scrollbar-corner"></div></div>
+                                    </div>
+                                    <div class="os-scrollbar-corner"></div>
+                                </div>
+                            </div>
+                        </section>
                     </div>
                     <!-- Projects Content End -->
                 </div>
