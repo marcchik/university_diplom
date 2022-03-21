@@ -101,7 +101,7 @@ foreach($arraySubjectBD as $subjectItem) {
                         <div class="d-flex align-items-center flex-column mb-4">
                             <div class="d-flex align-items-center flex-column">
                                 <div class="sw-13 position-relative mb-3">
-                                    <img src="../template/img/profile/profile-7.jpg" class="img-fluid rounded-xl"
+                                    <img src="../template/img/profile/profile.jpg" class="img-fluid rounded-xl"
                                          alt="thumb">
                                 </div>
                                 <div class="h5 mb-0"><?=$userName." ".$userSurname?></div>
@@ -128,16 +128,6 @@ foreach($arraySubjectBD as $subjectItem) {
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-calendar me-2"><path d="M14.5 4C15.9045 4 16.6067 4 17.1111 4.33706C17.3295 4.48298 17.517 4.67048 17.6629 4.88886C18 5.39331 18 6.09554 18 7.5L18 14.5C18 15.9045 18 16.6067 17.6629 17.1111C17.517 17.3295 17.3295 17.517 17.1111 17.6629C16.6067 18 15.9045 18 14.5 18L5.5 18C4.09554 18 3.39331 18 2.88886 17.6629C2.67048 17.517 2.48298 17.3295 2.33706 17.1111C2 16.6067 2 15.9045 2 14.5L2 7.5C2 6.09554 2 5.39331 2.33706 4.88886C2.48298 4.67048 2.67048 4.48298 2.88886 4.33706C3.39331 4 4.09554 4 5.5 4L14.5 4Z"></path><path d="M2 9H18M7 2 7 5.5M13 2 13 5.5M5 15H6"></path></svg>
                                 <span class="align-middle">Schedule</span>
                             </a>
-                            <a class="nav-link px-0 border-bottom border-separator-light" data-bs-toggle="tab"
-                               href="#friendsTab" role="tab" aria-selected="false">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 20 20"
-                                     fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                     stroke-linejoin="round" class="cs-icon cs-icon-heart me-2">
-                                    <path
-                                        d="M8.76342 3.53821L9.38606 4.02249C9.74717 4.30335 10.2528 4.30335 10.6139 4.02249L11.2366 3.53822C13.0089 2.15977 15.5753 2.55317 16.8533 4.39919C18.1181 6.22616 17.9917 8.67633 16.5456 10.3635L10.7593 17.1142C10.3602 17.5798 9.63984 17.5798 9.24074 17.1142L3.45439 10.3635C2.00828 8.67633 1.88189 6.22616 3.14672 4.39919C4.42473 2.55317 6.99113 2.15977 8.76342 3.53821Z"></path>
-                                </svg>
-                                <span class="align-middle">Friends</span>
-                            </a>
                             <a class="nav-link px-0" data-bs-toggle="tab" href="#aboutTab" role="tab"
                                aria-selected="false">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 20 20"
@@ -155,6 +145,7 @@ foreach($arraySubjectBD as $subjectItem) {
                 </div>
                 <!-- Biography End -->
             </div>
+
             <!-- Left Side End -->
 
             <!-- Right Side Start -->
@@ -355,9 +346,65 @@ foreach($arraySubjectBD as $subjectItem) {
                 <div class="tab-pane fade" id="projectsTab" role="tabpanel">
                     <h2 class="small-title">Score</h2>
 
+                    <div class="row mb-3">
+                        <form class="tooltip-end-top" method="post" action="index.php" id="reservationForm" novalidate>
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <p class="text-alternate mb-4">Your achievements!</p>
+                                    <div class="row g-3">
+                                        <div class="col-md-4">
+                                            <div class="mb-3 top-label">
+                                                <select class="form-control" data-width="100%" name="subject" id="reservationRoom">
+                                                    <option label="&nbsp;"></option>
+                                                    <? foreach($arraySubjectBD as $idSubject => $subjectItem) : ?>
+                                                        <option value="<?=$idSubject?>"><?=$subjectItem['name']?></option>
+                                                    <? endforeach; ?>
+                                                </select>
+                                                <span>SUBJECT</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3 top-label">
+                                                <select class="form-control" data-width="100%" name="number" id="reservationAdults">
+                                                    <option label="&nbsp;"></option>
+                                                    <? for($i = 1; $i < 17; $i++) : ?>
+                                                        <option value="<?=$i?>"><?=$i?></option>
+                                                    <? endfor; ?>
+                                                </select>
+                                                <span>NUMBER</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 ">
+                                            <input class="btn btn-primary mb-1 mt-2" type="submit" value="Submit" onclick="submitForm()">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <script type="text/JavaScript">
+                        function submitForm(){
+                            let url = '../BD/form-profile.php'; // здесь указываем адрес PHP файла
+                            let formData = $('.tooltip-end-top').serialize();
+                            console.log(formData);
+
+
+                            jQuery.ajax({
+                                async: false,
+                                url: url,
+                                method: 'post',
+                                dataType: 'json',
+                                data: formData
+                            });
+
+                            location = url + '?id=<?=$_REQUEST['id']?>&' + formData;
+                        }
+                    </script>
                     <!-- Projects Content Start -->
                     <div class="row row-cols-1 row-cols-sm-2 g-2">
-                        <? foreach($arrayStatBD[$ID] as $pairName => $item) :?>
+                        <? foreach($arrayStatBD[$ID] as $pairID => $item) :?>
                             <div class="col">
                                 <div class="card h-100">
                                     <div class="card-body">
@@ -365,7 +412,7 @@ foreach($arraySubjectBD as $subjectItem) {
                                             <a href="#" class="stretched-link">
                                             <span class="clamp-line sh-5" data-line="2"
                                                   style="overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical; display: -webkit-box; -webkit-line-clamp: 2;">
-                                               <?=$pairName?>
+                                               <?=$arraySubjectBD[$pairID]['name']?>
                                             </span>
                                             </a>
                                         </h6>
@@ -381,7 +428,7 @@ foreach($arraySubjectBD as $subjectItem) {
                                                     <path
                                                         d="M14 14C14 12.8954 14.8954 12 16 12V12C17.1046 12 18 12.8954 18 14V14C18 15.1046 17.1046 16 16 16V16C14.8954 16 14 15.1046 14 14V14zM2 14C2 12.8954 2.89543 12 4 12V12C5.10457 12 6 12.8954 6 14V14C6 15.1046 5.10457 16 4 16V16C2.89543 16 2 15.1046 2 14V14z"></path>
                                                 </svg>
-                                                <span class="align-middle text-alternate">All: 16</span>
+                                                <span class="align-middle text-alternate">All: <?=$arraySubjectBD[$pairID]['lab']?></span>
                                             </div>
                                             <div class="mb-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
@@ -392,7 +439,7 @@ foreach($arraySubjectBD as $subjectItem) {
                                                         d="M17.8636 5L11.2453 11.6183C10.4771 12.3865 9.23606 12.401 8.45017 11.6508L8.27708 11.4856C7.49119 10.7354 6.25016 10.7498 5.48192 11.5181L2 15"></path>
                                                     <path d="M14 5H18V9"></path>
                                                 </svg>
-                                                <span class="align-middle text-alternate">Not done: <?=(17 - $item)?></span>
+                                                <span class="align-middle text-alternate">Not done: <?=($arraySubjectBD[$pairID]['lab'] - $item)?></span>
                                             </div>
                                             <div>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
@@ -418,391 +465,291 @@ foreach($arraySubjectBD as $subjectItem) {
 
                 <!-- Permissions Tab Start -->
                 <div class="tab-pane fade" id="permissionsTab" role="tabpanel">
-                    <h2 class="small-title">Permissions</h2>
+                    <h2 class="small-title">Schedule</h2>
 
                     <div class="row row-cols-1 g-2">
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <label class="form-check custom-icon mb-0 checked-opacity-100">
-                                        <input type="checkbox" class="form-check-input" checked="">
-                          <span class="form-check-label">
-                            <span class="content opacity-50">
-                              <span class="heading mb-1 lh-1-25">Create</span>
-                              <span class="d-block text-small text-muted">
-                                Chocolate cake biscuit donut cotton candy soufflé cake macaroon. Halvah chocolate cotton candy sweet roll jelly-o candy danish
-                                dragée.
-                              </span>
-                            </span>
-                          </span>
-                                    </label>
+                        <section class="scroll-section" id="embed">
+                            <div class="row">
+                                <div class="col-12 col-sm-6 col-xl-4 col-xxl-3">
+                                    <div class="card mb-5">
+                                        <div class="card-body">
+                                            <div id="datePickerEmbed">
+                                                <div class="datepicker datepicker-inline">
+                                                    <div class="datepicker-days" style="">
+                                                        <table class="table-condensed">
+                                                            <thead>
+                                                            <tr>
+                                                                <th colspan="7" class="datepicker-title"
+                                                                    style="display: none;"></th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="prev"><i class="cs-chevron-left"></i></th>
+                                                                <th colspan="5" class="datepicker-switch">March 2022
+                                                                </th>
+                                                                <th class="next"><i class="cs-chevron-right"></i></th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="dow">Su</th>
+                                                                <th class="dow">Mo</th>
+                                                                <th class="dow">Tu</th>
+                                                                <th class="dow">We</th>
+                                                                <th class="dow">Th</th>
+                                                                <th class="dow">Fr</th>
+                                                                <th class="dow">Sa</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td class="old day" data-date="1645920000000">27</td>
+                                                                <td class="old day" data-date="1646006400000">28</td>
+                                                                <td class="day" data-date="1646092800000">1</td>
+                                                                <td class="day" data-date="1646179200000">2</td>
+                                                                <td class="day" data-date="1646265600000">3</td>
+                                                                <td class="day" data-date="1646352000000">4</td>
+                                                                <td class="day" data-date="1646438400000">5</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="day" data-date="1646524800000">6</td>
+                                                                <td class="day" data-date="1646611200000">7</td>
+                                                                <td class="day" data-date="1646697600000">8</td>
+                                                                <td class="day" data-date="1646784000000">9</td>
+                                                                <td class="day" data-date="1646870400000">10</td>
+                                                                <td class="day" data-date="1646956800000">11</td>
+                                                                <td class="day" data-date="1647043200000">12</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="day" data-date="1647129600000">13</td>
+                                                                <td class="day" data-date="1647216000000">14</td>
+                                                                <td class="day" data-date="1647302400000">15</td>
+                                                                <td class="day" data-date="1647388800000">16</td>
+                                                                <td class="day" data-date="1647475200000">17</td>
+                                                                <td class="day" data-date="1647561600000">18</td>
+                                                                <td class="day" data-date="1647648000000">19</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="day" data-date="1647734400000">20</td>
+                                                                <td class="day" data-date="1647820800000">21</td>
+                                                                <td class="day" data-date="1647907200000">22</td>
+                                                                <td class="day" data-date="1647993600000">23</td>
+                                                                <td class="day" data-date="1648080000000">24</td>
+                                                                <td class="day" data-date="1648166400000">25</td>
+                                                                <td class="day" data-date="1648252800000">26</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="day" data-date="1648339200000">27</td>
+                                                                <td class="day" data-date="1648425600000">28</td>
+                                                                <td class="day" data-date="1648512000000">29</td>
+                                                                <td class="day" data-date="1648598400000">30</td>
+                                                                <td class="day" data-date="1648684800000">31</td>
+                                                                <td class="new day" data-date="1648771200000">1</td>
+                                                                <td class="new day" data-date="1648857600000">2</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="new day" data-date="1648944000000">3</td>
+                                                                <td class="new day" data-date="1649030400000">4</td>
+                                                                <td class="new day" data-date="1649116800000">5</td>
+                                                                <td class="new day" data-date="1649203200000">6</td>
+                                                                <td class="new day" data-date="1649289600000">7</td>
+                                                                <td class="new day" data-date="1649376000000">8</td>
+                                                                <td class="new day" data-date="1649462400000">9</td>
+                                                            </tr>
+                                                            </tbody>
+                                                            <tfoot>
+                                                            <tr>
+                                                                <th colspan="7" class="today" style="display: none;">
+                                                                    Today
+                                                                </th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th colspan="7" class="clear" style="display: none;">
+                                                                    Clear
+                                                                </th>
+                                                            </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                    <div class="datepicker-months" style="display: none;">
+                                                        <table class="table-condensed">
+                                                            <thead>
+                                                            <tr>
+                                                                <th colspan="7" class="datepicker-title"
+                                                                    style="display: none;"></th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="prev"><i class="cs-chevron-left"></i></th>
+                                                                <th colspan="5" class="datepicker-switch">2022</th>
+                                                                <th class="next">ghdbtn</i></th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td colspan="7"><span class="month">Jan</span><span
+                                                                        class="month">Feb</span><span
+                                                                        class="month focused">Mar</span><span
+                                                                        class="month">Apr</span><span
+                                                                        class="month">May</span><span
+                                                                        class="month">Jun</span><span
+                                                                        class="month">Jul</span><span
+                                                                        class="month">Aug</span><span
+                                                                        class="month">Sep</span><span
+                                                                        class="month">Oct</span><span
+                                                                        class="month">Nov</span><span
+                                                                        class="month">Dec</span></td>
+                                                            </tr>
+                                                            </tbody>
+                                                            <tfoot>
+                                                            <tr>
+                                                                <th colspan="7" class="today" style="display: none;">
+                                                                    Today
+                                                                </th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th colspan="7" class="clear" style="display: none;">
+                                                                    Clear
+                                                                </th>
+                                                            </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                    <div class="datepicker-years" style="display: none;">
+                                                        <table class="table-condensed">
+                                                            <thead>
+                                                            <tr>
+                                                                <th colspan="7" class="datepicker-title"
+                                                                    style="display: none;"></th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="prev"><i class="cs-chevron-left"></i></th>
+                                                                <th colspan="5" class="datepicker-switch">2020-2029</th>
+                                                                <th class="next"><i class="cs-chevron-right"></i></th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td colspan="7"><span class="year old">2019</span><span
+                                                                        class="year">2020</span><span
+                                                                        class="year">2021</span><span
+                                                                        class="year focused">2022</span><span
+                                                                        class="year">2023</span><span
+                                                                        class="year">2024</span><span
+                                                                        class="year">2025</span><span
+                                                                        class="year">2026</span><span
+                                                                        class="year">2027</span><span
+                                                                        class="year">2028</span><span
+                                                                        class="year">2029</span><span class="year new">2030</span>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                            <tfoot>
+                                                            <tr>
+                                                                <th colspan="7" class="today" style="display: none;">
+                                                                    Today
+                                                                </th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th colspan="7" class="clear" style="display: none;">
+                                                                    Clear
+                                                                </th>
+                                                            </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                    <div class="datepicker-decades" style="display: none;">
+                                                        <table class="table-condensed">
+                                                            <thead>
+                                                            <tr>
+                                                                <th colspan="7" class="datepicker-title"
+                                                                    style="display: none;"></th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="prev"><i class="cs-chevron-left"></i></th>
+                                                                <th colspan="5" class="datepicker-switch">2000-2090</th>
+                                                                <th class="next"><i class="cs-chevron-right"></i></th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td colspan="7"><span
+                                                                        class="decade old">1990</span><span
+                                                                        class="decade">2000</span><span class="decade">2010</span><span
+                                                                        class="decade focused">2020</span><span
+                                                                        class="decade">2030</span><span class="decade">2040</span><span
+                                                                        class="decade">2050</span><span class="decade">2060</span><span
+                                                                        class="decade">2070</span><span class="decade">2080</span><span
+                                                                        class="decade">2090</span><span
+                                                                        class="decade new">2100</span></td>
+                                                            </tr>
+                                                            </tbody>
+                                                            <tfoot>
+                                                            <tr>
+                                                                <th colspan="7" class="today" style="display: none;">
+                                                                    Today
+                                                                </th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th colspan="7" class="clear" style="display: none;">
+                                                                    Clear
+                                                                </th>
+                                                            </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                    <div class="datepicker-centuries" style="display: none;">
+                                                        <table class="table-condensed">
+                                                            <thead>
+                                                            <tr>
+                                                                <th colspan="7" class="datepicker-title"
+                                                                    style="display: none;"></th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="prev"><i class="cs-chevron-left"></i></th>
+                                                                <th colspan="5" class="datepicker-switch">2000-2900</th>
+                                                                <th class="next"><i class="cs-chevron-right"></i></th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td colspan="7"><span
+                                                                        class="century old">1900</span><span
+                                                                        class="century focused">2000</span><span
+                                                                        class="century">2100</span><span
+                                                                        class="century">2200</span><span
+                                                                        class="century">2300</span><span
+                                                                        class="century">2400</span><span
+                                                                        class="century">2500</span><span
+                                                                        class="century">2600</span><span
+                                                                        class="century">2700</span><span
+                                                                        class="century">2800</span><span
+                                                                        class="century">2900</span><span
+                                                                        class="century new">3000</span></td>
+                                                            </tr>
+                                                            </tbody>
+                                                            <tfoot>
+                                                            <tr>
+                                                                <th colspan="7" class="today" style="display: none;">
+                                                                    Today
+                                                                </th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th colspan="7" class="clear" style="display: none;">
+                                                                    Clear
+                                                                </th>
+                                                            </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <label class="form-check custom-icon mb-0 checked-opacity-100">
-                                        <input type="checkbox" class="form-check-input" checked="">
-                          <span class="form-check-label">
-                            <span class="content opacity-50">
-                              <span class="heading mb-1 lh-1-25">Publish</span>
-                              <span class="d-block text-small text-muted">Jelly beans wafer candy caramels fruitcake macaroon sweet roll.</span>
-                            </span>
-                          </span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <label class="form-check custom-icon mb-0 checked-opacity-100">
-                                        <input type="checkbox" class="form-check-input" checked="">
-                          <span class="form-check-label">
-                            <span class="content opacity-50">
-                              <span class="heading mb-1 lh-1-25">Edit</span>
-                              <span class="d-block text-small text-muted">Jelly cake jelly sesame snaps jelly beans jelly beans.</span>
-                            </span>
-                          </span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <label class="form-check custom-icon mb-0 checked-opacity-100">
-                                        <input type="checkbox" class="form-check-input">
-                          <span class="form-check-label">
-                            <span class="content opacity-50">
-                              <span class="heading mb-1 lh-1-25">Delete</span>
-                              <span class="d-block text-small text-muted">Danish oat cake pudding.</span>
-                            </span>
-                          </span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <label class="form-check custom-icon mb-0 checked-opacity-100">
-                                        <input type="checkbox" class="form-check-input" checked="">
-                          <span class="form-check-label">
-                            <span class="content opacity-50">
-                              <span class="heading mb-1 lh-1-25">Add User</span>
-                              <span class="d-block text-small text-muted">Soufflé chocolate cake chupa chups danish brownie pudding fruitcake.</span>
-                            </span>
-                          </span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <label class="form-check custom-icon mb-0 checked-opacity-100">
-                                        <input type="checkbox" class="form-check-input">
-                          <span class="form-check-label">
-                            <span class="content opacity-50">
-                              <span class="heading mb-1 lh-1-25">Edit User</span>
-                              <span class="d-block text-small text-muted">Biscuit powder brownie powder sesame snaps jelly-o dragée cake.</span>
-                            </span>
-                          </span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <label class="form-check custom-icon mb-0 checked-opacity-100">
-                                        <input type="checkbox" class="form-check-input">
-                          <span class="form-check-label">
-                            <span class="content opacity-50">
-                              <span class="heading mb-1 lh-1-25">Delete User</span>
-                              <span class="d-block text-small text-muted">
-                                Liquorice jelly powder fruitcake oat cake. Gummies tiramisu cake jelly-o bonbon. Marshmallow liquorice croissant.
-                              </span>
-                            </span>
-                          </span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+                        </section>
                     </div>
                 </div>
                 <!-- Permissions Tab End -->
 
-                <!-- Friends Tab Start -->
-                <div class="tab-pane fade" id="friendsTab" role="tabpanel">
-                    <h2 class="small-title">Friends</h2>
 
-                    <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 g-2 mb-5">
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row g-0 sh-6">
-                                        <div class="col-auto">
-                                            <img src="img/profile/profile-1.jpg" class="card-img rounded-xl sh-6 sw-6"
-                                                 alt="thumb">
-                                        </div>
-                                        <div class="col">
-                                            <div
-                                                class="card-body d-flex flex-row pt-0 pb-0 ps-3 pe-0 h-100 align-items-center justify-content-between">
-                                                <div class="d-flex flex-column">
-                                                    <div><?=$userName." ".$userSurname?></div>
-                                                    <div class="text-small text-muted">Project Manager</div>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <button type="button" class="btn btn-outline-primary btn-sm ms-1">
-                                                        Follow
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row g-0 sh-6">
-                                        <div class="col-auto">
-                                            <img src="img/profile/profile-4.jpg" class="card-img rounded-xl sh-6 sw-6"
-                                                 alt="thumb">
-                                        </div>
-                                        <div class="col">
-                                            <div
-                                                class="card-body d-flex flex-row pt-0 pb-0 ps-3 pe-0 h-100 align-items-center justify-content-between">
-                                                <div class="d-flex flex-column">
-                                                    <div>Cherish Kerr</div>
-                                                    <div class="text-small text-muted">Development Lead</div>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <button type="button" class="btn btn-outline-primary btn-sm ms-1">
-                                                        Follow
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row g-0 sh-6">
-                                        <div class="col-auto">
-                                            <img src="img/profile/profile-8.jpg" class="card-img rounded-xl sh-6 sw-6"
-                                                 alt="thumb">
-                                        </div>
-                                        <div class="col">
-                                            <div
-                                                class="card-body d-flex flex-row pt-0 pb-0 ps-3 pe-0 h-100 align-items-center justify-content-between">
-                                                <div class="d-flex flex-column">
-                                                    <div>Kirby Peters</div>
-                                                    <div class="text-small text-muted">Accounting</div>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <button type="button" class="btn btn-outline-primary btn-sm ms-1">
-                                                        Follow
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row g-0 sh-6">
-                                        <div class="col-auto">
-                                            <img src="img/profile/profile-5.jpg" class="card-img rounded-xl sh-6 sw-6"
-                                                 alt="thumb">
-                                        </div>
-                                        <div class="col">
-                                            <div
-                                                class="card-body d-flex flex-row pt-0 pb-0 ps-3 pe-0 h-100 align-items-center justify-content-between">
-                                                <div class="d-flex flex-column">
-                                                    <div>Olli Hawkins</div>
-                                                    <div class="text-small text-muted">Client Relations Lead</div>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <button type="button" class="btn btn-outline-primary btn-sm ms-1">
-                                                        Follow
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row g-0 sh-6">
-                                        <div class="col-auto">
-                                            <img src="img/profile/profile-2.jpg" class="card-img rounded-xl sh-6 sw-6"
-                                                 alt="thumb">
-                                        </div>
-                                        <div class="col">
-                                            <div
-                                                class="card-body d-flex flex-row pt-0 pb-0 ps-3 pe-0 h-100 align-items-center justify-content-between">
-                                                <div class="d-flex flex-column">
-                                                    <div>Zayn Hartley</div>
-                                                    <div class="text-small text-muted">Customer Engagement</div>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <button type="button" class="btn btn-outline-primary btn-sm ms-1">
-                                                        Follow
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row g-0 sh-6">
-                                        <div class="col-auto">
-                                            <img src="img/profile/profile-3.jpg" class="card-img rounded-xl sh-6 sw-6"
-                                                 alt="thumb">
-                                        </div>
-                                        <div class="col">
-                                            <div
-                                                class="card-body d-flex flex-row pt-0 pb-0 ps-3 pe-0 h-100 align-items-center justify-content-between">
-                                                <div class="d-flex flex-column">
-                                                    <div>Esperanza Lodge</div>
-                                                    <div class="text-small text-muted">UX Designer</div>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <button type="button" class="btn btn-outline-primary btn-sm ms-1">
-                                                        Follow
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row g-0 sh-6">
-                                        <div class="col-auto">
-                                            <img src="img/profile/profile-4.jpg" class="card-img rounded-xl sh-6 sw-6"
-                                                 alt="thumb">
-                                        </div>
-                                        <div class="col">
-                                            <div
-                                                class="card-body d-flex flex-row pt-0 pb-0 ps-3 pe-0 h-100 align-items-center justify-content-between">
-                                                <div class="d-flex flex-column">
-                                                    <div>Kerr Jackson</div>
-                                                    <div class="text-small text-muted">Frontend Developer</div>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <button type="button" class="btn btn-outline-primary btn-sm ms-1">
-                                                        Follow
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row g-0 sh-6">
-                                        <div class="col-auto">
-                                            <img src="img/profile/profile-6.jpg" class="card-img rounded-xl sh-6 sw-6"
-                                                 alt="thumb">
-                                        </div>
-                                        <div class="col">
-                                            <div
-                                                class="card-body d-flex flex-row pt-0 pb-0 ps-3 pe-0 h-100 align-items-center justify-content-between">
-                                                <div class="d-flex flex-column">
-                                                    <div>Kathryn Mengel</div>
-                                                    <div class="text-small text-muted">Team Leader</div>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <button type="button" class="btn btn-outline-primary btn-sm ms-1">
-                                                        Follow
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row g-0 sh-6">
-                                        <div class="col-auto">
-                                            <img src="img/profile/profile-6.jpg" class="card-img rounded-xl sh-6 sw-6"
-                                                 alt="thumb">
-                                        </div>
-                                        <div class="col">
-                                            <div
-                                                class="card-body d-flex flex-row pt-0 pb-0 ps-3 pe-0 h-100 align-items-center justify-content-between">
-                                                <div class="d-flex flex-column">
-                                                    <div>Joisse Kaycee</div>
-                                                    <div class="text-small text-muted">Copywriter</div>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <button type="button" class="btn btn-outline-primary btn-sm ms-1">
-                                                        Follow
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row g-0 sh-6">
-                                        <div class="col-auto">
-                                            <img src="../template/img/profile/profile-7.jpg" class="card-img rounded-xl sh-6 sw-6"
-                                                 alt="thumb">
-                                        </div>
-                                        <div class="col">
-                                            <div
-                                                class="card-body d-flex flex-row pt-0 pb-0 ps-3 pe-0 h-100 align-items-center justify-content-between">
-                                                <div class="d-flex flex-column">
-                                                    <div>Zayn Hartley</div>
-                                                    <div class="text-small text-muted">Visual Effect Designer</div>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <button type="button" class="btn btn-outline-primary btn-sm ms-1">
-                                                        Follow
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Friends Tab End -->
 
                 <!-- About Tab Start -->
                 <div class="tab-pane fade" id="aboutTab" role="tabpanel">

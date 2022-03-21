@@ -97,7 +97,7 @@
                 <!-- User Menu Start -->
                 <div class="user-container d-flex">
                     <a href="#" class="d-flex user position-relative" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="profile" alt="profile" src="../../orderLab/template/img/profile/profile-10.jpg" />
+                        <img class="profile" alt="profile" src="../../orderLab/template/img/profile/profile.jpg" />
                         <div class="name"><?=$userName?></div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end user-menu wide">
@@ -140,7 +140,6 @@
                                 <ul class="list-unstyled">
                                     <li>
                                         <a href="#">
-                                            <i data-cs-icon="email" class="me-2" data-cs-size="17"></i>
                                             <span class="align-middle"><?=$userEmail?></span>
                                         </a>
                                     </li>
