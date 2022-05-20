@@ -10,7 +10,7 @@ $arrayUsersBD = array();
 $username = $_REQUEST['contactEmail'];
 
 // получаем данные из JSON файла
-$ourData = file_get_contents("data.json");
+$ourData = file_get_contents("../JSON/data.json");
 
 // Преобразуем в массив
 $arrayUsersBD = json_decode($ourData, true);
@@ -38,7 +38,7 @@ if ($count == 0) {
 
     $result = array_merge($arrayUsersBD, $USER);
 
-    file_put_contents('temporary.json',json_encode($result));
+    file_put_contents('../JSON/temporary.json',json_encode($result));
 
     echo "<script>location.href='add-user.php?id=".$id."';</script>";
 

@@ -1,6 +1,22 @@
 <? require_once('template/header.php'); ?>
 
+<?php
+//$serverName = "80.94.168.145\sqlexpress, 1433";
+////$serverName = "80.94.168.145"; //serverName\instanceName
+//// Поскольку UID и PWD не указаны в массиве $connectionInfo,
+//// будет предпринята попытка подключения с использованием проверки подлинности Windows.
+//$connectionInfo = array( "Database"=>"ORDERLAB", "UID"=>"student", "PWD"=>'Pa$$w0rd');
+//$conn = sqlsrv_connect( $serverName, $connectionInfo);
+//
+//if( $conn ) {
+//    echo "Соединение установлено.<br />";
+//}else{
+//    echo "Соединение не установлено.<br />";
+//    die( print_r( sqlsrv_errors(), true));
+//}
 
+
+?>
     <main>
         <div class="container">
             <div class="row">
@@ -43,7 +59,7 @@
 
                                     <script>
                                         function submitForm() {
-                                            let url = 'BD/form-login.php'; // здесь указываем адрес PHP файла
+                                            let url = 'BD/FORM/form-login.php'; // здесь указываем адрес PHP файла
                                             let formData = $('.tooltip-end-bottom').serialize();
                                             console.log(formData);
 

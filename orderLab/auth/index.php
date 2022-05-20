@@ -120,7 +120,7 @@
             </div>
             <script>
                 function submitForm() {
-                    let url = '../BD/form-register.php'; // здесь указываем адрес PHP файла
+                    let url = '../BD/FORM/form-register.php'; // здесь указываем адрес PHP файла
                     let formData = $('.tooltip-end-top').serialize();
                     console.log(formData);
 

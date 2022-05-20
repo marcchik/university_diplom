@@ -3,7 +3,7 @@
 <?
 
 // получаем данные из JSON файла
-$ourData = file_get_contents("../BD/data.json");
+$ourData = file_get_contents("../BD/JSON/data.json");
 
 // Преобразуем в массив
 $arrayUsersBD = json_decode($ourData, true);
@@ -20,7 +20,7 @@ foreach ($arrayUsersBD as $key => $item) {
 }
 
 // получаем данные из JSON файла
-$ourData = file_get_contents("../BD/schedule.json");
+$ourData = file_get_contents("../BD/JSON/schedule.json");
 
 // Преобразуем в массив
 $arrayScheduleDay = json_decode($ourData, true);
@@ -415,7 +415,7 @@ $arrayScheduleDay = json_decode($ourData, true);
                 </div>
                 <script type="text/JavaScript">
                     function submitForm(num){
-                        let url = '../BD/form-management.php'; // здесь указываем адрес PHP файла
+                        let url = '../BD/FORM/form-management.php'; // здесь указываем адрес PHP файла
                         let formData = $('#contactForm' + num).serialize();
                         console.log(formData);
 

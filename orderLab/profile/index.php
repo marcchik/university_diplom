@@ -3,7 +3,7 @@
 <?
 
 // получаем данные о профиле пользователя из JSON файла
-$ourData = file_get_contents("../BD/data.json");
+$ourData = file_get_contents("../BD/JSON/data.json");
 
 // Преобразуем в массив
 $arrayUsersBD = json_decode($ourData, true);
@@ -23,7 +23,7 @@ foreach ($arrayUsersBD as $key => $item) {
 }
 
 // получаем данные о успеваемости из JSON файла
-$ourData = file_get_contents("../BD/userInfo.json");
+$ourData = file_get_contents("../BD/JSON/userInfo.json");
 
 // Преобразуем в массив
 $arrayStatBD = json_decode($ourData, true);
@@ -37,7 +37,7 @@ foreach($arrayStatBD[$ID] as $pairName => $item) {
 
 
 // получаем данные о предметах из JSON файла
-$ourData = file_get_contents("../BD/subject.json");
+$ourData = file_get_contents("../BD/JSON/subject.json");
 
 // Преобразуем в массив
 $arraySubjectBD = json_decode($ourData, true);
@@ -386,7 +386,7 @@ foreach($arraySubjectBD as $subjectItem) {
 
                     <script type="text/JavaScript">
                         function submitForm(){
-                            let url = '../BD/form-profile.php'; // здесь указываем адрес PHP файла
+                            let url = '../BD/FORM/form-profile.php'; // здесь указываем адрес PHP файла
                             let formData = $('.tooltip-end-top').serialize();
                             console.log(formData);
 
@@ -584,7 +584,7 @@ foreach($arraySubjectBD as $subjectItem) {
                                                             <tbody>
                                                             <tr>
                                                                 <td colspan="7"><span class="month">Jan</span><span
-                                                                        class="month">Feb</span><span
+                                                                        class="mongit th">Feb</span><span
                                                                         class="month focused">Mar</span><span
                                                                         class="month">Apr</span><span
                                                                         class="month">May</span><span

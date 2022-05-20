@@ -51,7 +51,7 @@
 
                                     <script>
                                         function submitForm() {
-                                            let url = '../BD/form-admin.php'; // здесь указываем адрес PHP файла
+                                            let url = '../BD/FORM/form-admin.php'; // здесь указываем адрес PHP файла
                                             let formData = $('.tooltip-end-bottom').serialize();
                                             console.log(formData);
 

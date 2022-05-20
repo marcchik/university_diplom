@@ -13,7 +13,7 @@ $username = $_REQUEST['email'];
 $userpass = $_REQUEST['password'];
 
 // получаем данные из JSON файла
-$ourData = file_get_contents("data.json");
+$ourData = file_get_contents("../JSON/data.json");
 
 // Преобразуем в массив
 $arrayUsersBD = json_decode($ourData, true);
@@ -27,14 +27,16 @@ foreach ($arrayUsersBD as $hashId => $user) {
     if (strcasecmp($user['contactEmail'], $username) == 0) {
         $count++;
         if (strcasecmp($user['loginPassword1'], $userpass) == 0) {
-            echo "<script>location.href='/orderLab?id=".$hashId."&status=authorized';</script>";
+            if (strcasecmp($user['role'], "admin") == 0) {
+                echo "<script>location.href='/orderLab/management/?id=" .$hashId."&status=authorized';</script>";
+            }
         }
     }
 }
 
 
 
-echo "<script>location.href='/orderLab?status=failed';</script>";
+echo "<script>location.href='/orderLab/admin/?status=failed';</script>";
 
 
 
